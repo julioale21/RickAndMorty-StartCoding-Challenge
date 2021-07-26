@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { FETCH_CHARACTERS } from "../../apollo/queries/characters";
-import { Title } from "./styles";
 
 const Characters = () => {
   const { data } = useQuery(FETCH_CHARACTERS);
@@ -10,7 +9,7 @@ const Characters = () => {
 
   return (
     <div>
-      <Title>Characters</Title>
+      <h1>Characters</h1>
     </div>
   );
 };
