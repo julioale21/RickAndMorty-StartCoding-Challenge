@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { ITheme } from "../../theme";
 
-export const StyledMenu = styled.nav`
+export const StyledMenu = styled.nav<{ theme: ITheme; open: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
