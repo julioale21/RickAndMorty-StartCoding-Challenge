@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { ITheme } from "../../theme";
 
 export const Container = styled.div`
   // width: 100vw;
   // min-width: 100%;
 `;
 
-export const Grid = styled.div`
+export const Grid = styled.div<{ theme: ITheme }>`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
