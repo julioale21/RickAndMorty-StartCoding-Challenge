@@ -19,14 +19,10 @@ export const FETCH_CHARACTERS = gql`
         origin {
           id
           name
-          type
-          dimension
         }
         location {
           id
           name
-          type
-          dimension
         }
         image
         episode {
