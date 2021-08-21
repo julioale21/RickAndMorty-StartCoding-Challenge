@@ -19,4 +19,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: ITheme }>`
     justify-content: center;
     text-rendering: optimizeLegibility;
   }
+  #__next {
+    width: 100%;
+  }
   `;
