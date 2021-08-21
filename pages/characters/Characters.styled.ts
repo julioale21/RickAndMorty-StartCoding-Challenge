@@ -20,20 +20,25 @@ export const Button = styled.button<IButtonProps>`
   }
 `;
 
-export const Container = styled.div`
-  // width: 100vw;
-  // min-width: 100%;
-`;
+export const Container = styled.div``;
 
 export const Grid = styled.div<{ theme: ITheme }>`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 2rem;
   grid-auto-rows: minmax(100px, auto);
   padding: 1rem;
 
-  @media (max-width: ${({ theme }) => theme.mobile}) {
-    grid-template-columns: repeat(1, 1fr);
+  @media (min-width: ${theme.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: ${theme.desktop}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 
@@ -46,7 +51,6 @@ export const GridItem = styled.div`
   flex: 1;
   justify-content: center;
   padding: 10px;
-  box-shadow: 2px 2px 2px ${({ theme }) => theme.primaryLight};
 `;
 
 export const Title = styled.h1`
