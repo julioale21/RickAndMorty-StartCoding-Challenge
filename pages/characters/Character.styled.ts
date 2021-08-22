@@ -10,6 +10,7 @@ export const VTitle = styled.h1`
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 100px;
 
   @media (min-width: ${theme.tablet}) {
     flex-direction: row;
