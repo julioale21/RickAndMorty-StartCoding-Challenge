@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: ITheme }>`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 16px;
   }
   *, *::after, *::before {
     box-sizing: border-box;
@@ -25,5 +26,6 @@ export const GlobalStyles = createGlobalStyle<{ theme: ITheme }>`
     width: 100%;
     border: 0;
     padding: 0;
+    font-size: 16px;
   }
   `;
