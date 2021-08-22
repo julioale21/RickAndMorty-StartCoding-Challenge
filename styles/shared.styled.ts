@@ -15,9 +15,9 @@ interface IText {
 
 export const Text = styled.p<IText>`
   color: ${(props) => props.color || null};
-  font-size: ${(props) => props.fontSize || "1rem"};
+  font-size: ${(props) => props.fontSize || null};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "normal")};
-  margin: ${(props) => props.margin || null};
+  margin: ${(props) => props.margin || 0};
   margin-bottom: ${(props) => props.marginBottom || null};
   margin-left: ${(props) => props.marginLeft || null};
   margin-right: ${(props) => props.marginRight || null};
