@@ -8,4 +8,5 @@ export const MainContainer = styled.div`
 export const Main = styled.div`
   width: 100%;
   z-index: 0;
+  position: relative;
 `;
