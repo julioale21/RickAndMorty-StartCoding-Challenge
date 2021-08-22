@@ -2,21 +2,24 @@ import styled from "styled-components";
 import { ITheme, theme } from "../../theme";
 
 export const StyledMenu = styled.nav<{ theme: ITheme; open: boolean }>`
+  background: ${theme.primaryDark};
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background: ${theme.primaryDark};
-  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
   height: 100vh;
-  text-align: left;
+  justify-content: center;
+  left: 0;
   padding: 2rem;
   position: absolute;
+  text-align: left;
   top: 0;
-  left: 0;
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
   transition: transform 0.3s ease-in-out;
+
   @media (max-width: ${theme.mobile}) {
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
   }
+
   a {
     font-size: 1.5rem;
     text-transform: uppercase;
