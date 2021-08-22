@@ -20,7 +20,13 @@ export const Button = styled.button<IButtonProps>`
   }
 `;
 
-export const Container = styled.div``;
+export const CharacterContainer = styled.div`
+  background-image: url("/rick_and_morty-2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0 4rem;
+  padding-top: 80px;
+`;
 
 export const Grid = styled.div<{ theme: ITheme }>`
   display: grid;
@@ -37,15 +43,13 @@ export const Grid = styled.div<{ theme: ITheme }>`
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1400px) {
     grid-template-columns: repeat(4, 1fr);
   }
 `;
 
 export const GridItem = styled.div`
   align-items: center;
-  border: 1px solid gray;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -53,6 +57,19 @@ export const GridItem = styled.div`
   padding: 10px;
 `;
 
-export const Title = styled.h1`
-  text-align: center;
+export const Image = styled.img`
+  border-radius: 50%;
+  z-index: 1;
+  border: 5px solid white;
+`;
+
+export const InfoContainer = styled.div`
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  border-radius: 1rem;
+  margin-top: -3rem;
 `;

@@ -1,17 +1,30 @@
 import styled from "styled-components";
 
 interface IText {
-  fontSize?: string;
   color?: string;
+  fontSize?: string;
   fontWeight?: string;
   margin?: string;
+  marginBottom?: string;
+  marginLeft?: string;
+  marginRight?: string;
+  marginTop?: string;
+  textShadow?: string;
+  textAlign?: "center" | "start" | "end";
 }
 
 export const Text = styled.p<IText>`
+  color: ${(props) => props.color || null};
   font-size: ${(props) => props.fontSize || "1rem"};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "normal")};
-  color: ${(props) => props.color || null};
-  margin: ${(props) => props.margin || 0};
+  margin: ${(props) => props.margin || null};
+  margin-bottom: ${(props) => props.marginBottom || null};
+  margin-left: ${(props) => props.marginLeft || null};
+  margin-right: ${(props) => props.marginRight || null};
+  margin-top: ${(props) => props.marginTop || null};
+  text-align: ${(props) => props.textAlign || "center"};
+  text-shadow: ${(props) => props.textShadow || null};
+  width: 100%;
 `;
 
 interface IStack {

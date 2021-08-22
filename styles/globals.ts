@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: ITheme }>`
   html, body {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
   *, *::after, *::before {
     box-sizing: border-box;
@@ -19,7 +20,10 @@ export const GlobalStyles = createGlobalStyle<{ theme: ITheme }>`
     justify-content: center;
     text-rendering: optimizeLegibility;
   }
+
   #__next {
     width: 100%;
+    border: 0;
+    padding: 0;
   }
   `;
