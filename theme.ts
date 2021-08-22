@@ -7,6 +7,8 @@ export interface ITheme {
   mobile: string;
   tablet: string;
   desktop: string;
+  black: string;
+  white: string;
 }
 
 export const theme: ITheme = {
@@ -18,4 +20,6 @@ export const theme: ITheme = {
   mobile: "576px",
   tablet: "768px",
   desktop: "1200px",
+  white: "#ffffff",
+  black: "#000000",
 };
