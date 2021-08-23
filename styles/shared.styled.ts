@@ -1,4 +1,36 @@
 import styled from "styled-components";
+import { ITheme, theme } from "../theme";
+
+export const Grid = styled.div<{ theme: ITheme }>`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 2rem;
+  grid-auto-rows: minmax(100px, auto);
+  padding: 1rem;
+  max-width: 80%;
+  margin: 0 auto;
+
+  @media (min-width: ${theme.tablet}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: ${theme.desktop}) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1400px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+`;
+
+export const GridItem = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  padding: 10px;
+`;
 
 interface IText {
   color?: string;
