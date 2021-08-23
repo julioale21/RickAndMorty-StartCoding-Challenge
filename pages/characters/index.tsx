@@ -1,5 +1,4 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { FETCH_CHARACTERS } from "../../apollo/queries/characters";
 import {
@@ -11,20 +10,52 @@ import {
   InfoContainer,
 } from "./Characters.styled";
 
+import client from "../../apollo/client";
+
 import { Text } from "../../styles/shared.styled";
 import Character from "../../models/Character";
-import Paginator from "../../components/Paginator";
+import { Paginator } from "../../components";
 
-const Characters = () => {
-  const { data } = useQuery(FETCH_CHARACTERS);
+const getPageNumber = ({ next, prev }) => {
+  if (next !== 0 && next !== null) return next - 1;
+  if (prev !== null) return prev + 1;
+};
+
+const Characters = ({ data }) => {
   const router = useRouter();
+  const { info: defaultInfo, results: defaultResults } = data.characters;
+  const [results, setResults] = useState(defaultResults);
+  const [info, setInfo] = useState(defaultInfo);
+  const [page, setPage] = useState(getPageNumber({ ...info }));
 
-  if (!data) return "Loading ...";
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await client.query({
+        query: FETCH_CHARACTERS,
+        variables: {
+          page,
+        },
+      });
 
-  const { next, prev, count, pages } = data.characters.info;
+      setResults(data.characters.results);
+      setInfo(data.characters.info);
+    };
+
+    fetchData();
+  }, [page]);
+
+  if (!results) return "Loading ...";
 
   const handleSelectedCharacter = (character: Character) => {
     router.push("/characters/" + character.id);
+  };
+
+  const handleNextPage = () => {
+    setPage(page + 1);
+  };
+
+  const handlePrevPage = () => {
+    setPage(page - 1);
   };
 
   return (
@@ -33,7 +64,7 @@ const Characters = () => {
         Characters
       </Text>
       <Grid>
-        {data.characters.results.map((item) => {
+        {results.map((item) => {
           return (
             <GridItem key={item.id}>
               <Image alt="image" src={item.image} />
@@ -57,9 +88,35 @@ const Characters = () => {
           );
         })}
       </Grid>
-      <Paginator next={next} prev={prev} />
+      {results && (
+        <Paginator
+          handleNext={handleNextPage}
+          handlePrev={handlePrevPage}
+          next={info.next}
+          page={page}
+          prev={info.prev}
+        />
+      )}
     </CharacterContainer>
   );
 };
 
 export default Characters;
+
+export const getServerSideProps = async ({ res }) => {
+  try {
+    const { data } = await client.query({
+      query: FETCH_CHARACTERS,
+    });
+
+    return {
+      props: { data },
+    };
+  } catch (error) {
+    res.statusCode = 404;
+
+    return {
+      props: { error: { message: "Serer not found", code: res.statusCode } },
+    };
+  }
+};
