@@ -20,7 +20,6 @@ const CharacterDetail = () => {
 
   if (!loading) {
     character = data.character;
-    console.log(character);
   }
 
   if (loading) return "Loading...";

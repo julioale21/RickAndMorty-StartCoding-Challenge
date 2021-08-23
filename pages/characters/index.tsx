@@ -13,12 +13,15 @@ import {
 
 import { Text } from "../../styles/shared.styled";
 import Character from "../../models/Character";
+import Paginator from "../../components/Paginator";
 
 const Characters = () => {
   const { data } = useQuery(FETCH_CHARACTERS);
   const router = useRouter();
 
   if (!data) return "Loading ...";
+
+  const { next, prev, count, pages } = data.characters.info;
 
   const handleSelectedCharacter = (character: Character) => {
     router.push("/characters/" + character.id);
@@ -54,6 +57,7 @@ const Characters = () => {
           );
         })}
       </Grid>
+      <Paginator next={next} prev={prev} />
     </CharacterContainer>
   );
 };
