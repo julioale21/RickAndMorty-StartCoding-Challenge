@@ -3,7 +3,9 @@ import { theme } from "../../theme";
 
 export const Page = styled.div`
   border: 1px solid ${theme.primaryDark};
+  color: ${theme.white};
   border-radius: 50%;
+  font-weight: bold;
   width: 40px;
   height: 40px;
   margin: 0 5px;
@@ -13,13 +15,14 @@ export const Page = styled.div`
 `;
 
 export const PageButton = styled.button`
-  color: ${theme.secondaryLight};
-  background-color: ${theme.secondaryDark};
-  border: none;
-  width: 40px;
-  height: 40px;
+  background-color: ${theme.primaryDark};
   border-radius: 50%;
+  border: none;
+  color: ${theme.white};
+  cursor: pointer;
   font-size: 0.8rem;
+  height: 40px;
+  width: 40px;
 `;
 
 export const PageText = styled.p`
