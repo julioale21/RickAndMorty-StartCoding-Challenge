@@ -21,7 +21,7 @@ const Menu: React.FC<Props> = ({ open }) => {
         <a>Episodes</a>
       </Link>
 
-      <Link href="/places">
+      <Link href="/locations">
         <a>Places</a>
       </Link>
     </StyledMenu>
