@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { FETCH_CHARACTERS } from "../../apollo/queries/characters";
-import {
-  Button,
-  CharacterContainer,
-  Grid,
-  GridItem,
-  Image,
-  InfoContainer,
-} from "./Characters.styled";
+import { Button, CharacterContainer, Image, InfoContainer } from "./Characters.styled";
+import { Grid, GridItem } from "../../styles/shared.styled";
 
 import client from "../../apollo/client";
 
 import { Text } from "../../styles/shared.styled";
 import Character from "../../models/Character";
 import { Paginator } from "../../components";
-
-const getPageNumber = ({ next, prev }) => {
-  if (next !== 0 && next !== null) return next - 1;
-  if (prev !== null) return prev + 1;
-};
+import { getPageNumber } from "../../utils";
 
 const Characters = ({ data }) => {
   const router = useRouter();
