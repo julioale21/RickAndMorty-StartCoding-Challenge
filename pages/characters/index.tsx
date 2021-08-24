@@ -11,10 +11,9 @@ import Character from "../../models/Character";
 import { Paginator } from "../../components";
 import { getPageNumber } from "../../utils";
 
-const Characters = ({ data }) => {
+const Characters = ({ defaultCharacters, defaultInfo }) => {
   const router = useRouter();
-  const { info: defaultInfo, results: defaultResults } = data.characters;
-  const [results, setResults] = useState(defaultResults);
+  const [results, setResults] = useState(defaultCharacters);
   const [info, setInfo] = useState(defaultInfo);
   const [page, setPage] = useState(getPageNumber({ ...info }));
 
@@ -100,7 +99,7 @@ export const getServerSideProps = async ({ res }) => {
     });
 
     return {
-      props: { data },
+      props: { defaultCharacters: data.characters.results, defaultInfo: data.characters.info },
     };
   } catch (error) {
     res.statusCode = 404;
