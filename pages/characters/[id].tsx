@@ -27,9 +27,14 @@ const CharacterDetail = () => {
   return (
     <MainContainer>
       <VStack>
+        <HStack maxWidth="80%">
+          <img alt="" src="/rickandmorty.png" width="100%" />
+        </HStack>
         <HStack>
-          <h1>{character.name}</h1>
           <VTitle>Character</VTitle>
+          <Text display="inline" fontSize="3rem" fontWeight="bold">
+            {character.name}
+          </Text>
         </HStack>
         <VStack>
           <Text color={theme.secondaryDark} fontSize="1.2rem" fontWeight="bold">
