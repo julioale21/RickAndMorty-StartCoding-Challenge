@@ -3,6 +3,7 @@ import { theme } from "../../theme";
 
 export const VTitle = styled.h1`
   writing-mode: vertical-rl;
+  transform: rotate(180deg);
   font-size: 1rem;
   color: ${theme.secondaryDark};
 `;
