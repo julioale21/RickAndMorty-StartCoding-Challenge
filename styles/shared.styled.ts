@@ -34,6 +34,7 @@ export const GridItem = styled.div`
 
 interface IText {
   color?: string;
+  display?: "block" | "flex" | "inline" | "inline-flex" | "inline-block" | "none";
   fontSize?: string;
   fontWeight?: string;
   margin?: string;
@@ -41,12 +42,19 @@ interface IText {
   marginLeft?: string;
   marginRight?: string;
   marginTop?: string;
+  padding?: string;
+  paddingLeft?: string;
+  paddingRight?: string;
+  paddingBottom?: string;
+  paddingTop?: string;
   textShadow?: string;
   textAlign?: "center" | "start" | "end";
+  width?: string;
 }
 
 export const Text = styled.p<IText>`
   color: ${(props) => props.color || null};
+  display: ${(props) => props.display || null};
   font-size: ${(props) => props.fontSize || null};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "normal")};
   margin: ${(props) => props.margin || 0};
@@ -54,9 +62,14 @@ export const Text = styled.p<IText>`
   margin-left: ${(props) => props.marginLeft || null};
   margin-right: ${(props) => props.marginRight || null};
   margin-top: ${(props) => props.marginTop || null};
+  padding: ${(props) => props.padding || 0};
+  padding-bottom: ${(props) => props.paddingBottom || null};
+  padding-left: ${(props) => props.paddingLeft || null};
+  padding-right: ${(props) => props.paddingRight || null};
+  padding-top: ${(props) => props.paddingTop || null};
   text-align: ${(props) => props.textAlign || "center"};
   text-shadow: ${(props) => props.textShadow || null};
-  width: 100%;
+  width: ${(props) => props.textShadow || "auto"};
 `;
 
 interface IStack {
@@ -68,6 +81,7 @@ interface IStack {
   marginLeft?: string;
   marginRight?: string;
   marginTop?: string;
+  maxWidth?: string;
 }
 
 export const Stack = styled.div<IStack>`
@@ -80,6 +94,7 @@ export const Stack = styled.div<IStack>`
   margin-left: ${(props) => props.marginLeft || null};
   margin-right: ${(props) => props.marginLeft || null};
   margin-top: ${(props) => props.marginTop || null};
+  max-width: ${(props) => props.maxWidth || null};
 `;
 
 export const HStack = styled(Stack)`
