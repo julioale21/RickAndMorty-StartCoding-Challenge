@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ITheme, theme } from "../../theme";
 
 export const StyledMenu = styled.nav<{ theme: ITheme; open: boolean }>`
-  background: ${theme.primaryDark};
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
   height: 100vh;

@@ -1,7 +1,14 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
-import { Image, MainContainer, VTitle } from "./Character.styled";
+import {
+  AvatarContainer,
+  Image,
+  ImageContainer,
+  Line,
+  MainContainer,
+  VTitle,
+} from "./Character.styled";
 import { HStack, Text, VStack } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import Character from "../../models/Character";
@@ -70,7 +77,14 @@ const CharacterDetail = () => {
         </VStack>
       </VStack>
       <HStack>
-        <Image alt={character.name} src={character.image} />
+        <ImageContainer>
+          <Image alt={character.name} src={character.image} />
+          <AvatarContainer>
+            <Line />
+            <Text>{character.name}</Text>
+            <Line />
+          </AvatarContainer>
+        </ImageContainer>
       </HStack>
     </MainContainer>
   );
