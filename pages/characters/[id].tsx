@@ -32,7 +32,12 @@ const CharacterDetail = () => {
         </HStack>
         <HStack>
           <VTitle>Character</VTitle>
-          <Text display="inline" fontSize="3rem" fontWeight="bold">
+          <Text
+            display="inline"
+            fontSize="3rem"
+            fontWeight="bold"
+            textShadow={`2px 2px 2px ${theme.secondaryDark}`}
+          >
             {character.name}
           </Text>
         </HStack>

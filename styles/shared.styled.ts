@@ -47,6 +47,7 @@ interface IText {
   paddingRight?: string;
   paddingBottom?: string;
   paddingTop?: string;
+  shadow?: string;
   textShadow?: string;
   textAlign?: "center" | "start" | "end";
   width?: string;
@@ -67,6 +68,7 @@ export const Text = styled.p<IText>`
   padding-left: ${(props) => props.paddingLeft || null};
   padding-right: ${(props) => props.paddingRight || null};
   padding-top: ${(props) => props.paddingTop || null};
+  shadow: ${(props) => props.shadow || null};
   text-align: ${(props) => props.textAlign || "center"};
   text-shadow: ${(props) => props.textShadow || null};
   width: ${(props) => props.textShadow || "auto"};
