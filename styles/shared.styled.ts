@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import { ITheme, theme } from "../theme";
 
+export const Container = styled.div`
+  max-width: 90%;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1200px) {
+    max-width: 80%;
+  }
+`;
+
 interface IDivider {
   color?: string;
   weight?: string;
