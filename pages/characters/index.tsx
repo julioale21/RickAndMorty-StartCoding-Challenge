@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { FETCH_CHARACTERS } from "../../apollo/queries/characters";
 import { Button, CharacterContainer, Image, InfoContainer } from "./Characters.styled";
-import { Grid, GridItem, Separator } from "../../styles/shared.styled";
+import { Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
 
 import client from "../../apollo/client";
 
@@ -49,40 +49,47 @@ const Characters = ({ defaultCharacters, defaultInfo }) => {
 
   return (
     <CharacterContainer>
-      <Text fontSize="3rem" fontWeight="bolder" marginBottom="2rem" textShadow="2px 2px 2px white">
-        Characters
-      </Text>
-      <Grid>
-        {results.map((item) => {
-          return (
-            <GridItem key={item.id}>
-              <InfoContainer>
-                <Image alt="image" src={item.image} />
-                <Separator size="15px" />
-                <Text fontSize="1.2rem" fontWeight="bold" textShadow="1px 1px 1px white">
-                  {item.name}
-                </Text>
+      <Container>
+        <Text
+          fontSize="3rem"
+          fontWeight="bolder"
+          marginBottom="2rem"
+          textShadow="2px 2px 2px white"
+        >
+          Characters
+        </Text>
+        <Grid>
+          {results.map((item) => {
+            return (
+              <GridItem key={item.id}>
+                <InfoContainer>
+                  <Image alt="image" src={item.image} />
+                  <Separator size="15px" />
+                  <Text fontSize="1.2rem" fontWeight="bold" textShadow="1px 1px 1px white">
+                    {item.name}
+                  </Text>
 
-                <Text color="white" margin="0" textShadow="1px 1px 1px">
-                  {item.species}
-                </Text>
-                <Button primary onClick={() => handleSelectedCharacter(item)}>
-                  View
-                </Button>
-              </InfoContainer>
-            </GridItem>
-          );
-        })}
-      </Grid>
-      {results && (
-        <Paginator
-          handleNext={handleNextPage}
-          handlePrev={handlePrevPage}
-          next={info.next}
-          page={page}
-          prev={info.prev}
-        />
-      )}
+                  <Text color="white" margin="0" textShadow="1px 1px 1px">
+                    {item.species}
+                  </Text>
+                  <Button primary onClick={() => handleSelectedCharacter(item)}>
+                    View
+                  </Button>
+                </InfoContainer>
+              </GridItem>
+            );
+          })}
+        </Grid>
+        {results && (
+          <Paginator
+            handleNext={handleNextPage}
+            handlePrev={handlePrevPage}
+            next={info.next}
+            page={page}
+            prev={info.prev}
+          />
+        )}
+      </Container>
     </CharacterContainer>
   );
 };

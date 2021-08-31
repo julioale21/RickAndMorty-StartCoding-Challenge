@@ -19,3 +19,15 @@ export const InfoContainer = styled.div`
   padding: 0.5rem 1rem;
   width: 100%;
 `;
+
+export const Image = styled.img`
+  border-radius: 50%;
+  margin: 0.1em;
+`;
+
+export const ImagesContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+`;
