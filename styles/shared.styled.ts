@@ -7,11 +7,10 @@ export const Grid = styled.div<{ theme: ITheme }>`
   grid-gap: 2rem;
   grid-auto-rows: minmax(100px, auto);
   padding: 1rem;
-  max-width: 80%;
   margin: 0 auto;
 
   @media (min-width: ${theme.tablet}) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (min-width: ${theme.desktop}) {

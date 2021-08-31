@@ -56,16 +56,12 @@ const Characters = ({ defaultCharacters, defaultInfo }) => {
         {results.map((item) => {
           return (
             <GridItem key={item.id}>
-              <Image alt="image" src={item.image} />
               <InfoContainer>
-                <Text
-                  fontSize="1.2rem"
-                  fontWeight="bold"
-                  marginTop="3rem"
-                  textShadow="1px 1px 1px white"
-                >
+                <Image alt="image" src={item.image} />
+                <Text fontSize="1.2rem" fontWeight="bold" textShadow="1px 1px 1px white">
                   {item.name}
                 </Text>
+
                 <Text color="white" margin="0">
                   {item.species}
                 </Text>
