@@ -1,9 +1,29 @@
 import styled from "styled-components";
 import { ITheme, theme } from "../theme";
 
-export const Container = styled.div`
+interface IMargins {
+  margin?: string;
+  marginBottom?: string;
+  marginLeft?: string;
+  marginRight?: string;
+  marginTop?: string;
+}
+interface IPaddings {
+  padding?: string;
+  paddingLeft?: string;
+  paddingRight?: string;
+  paddingBottom?: string;
+  paddingTop?: string;
+}
+
+export const Container = styled.div<IPaddings>`
   max-width: 90%;
   margin: 0 auto;
+  padding: ${(props) => props.padding || 0};
+  padding-bottom: ${(props) => props.paddingBottom || null};
+  padding-left: ${(props) => props.paddingLeft || null};
+  padding-right: ${(props) => props.paddingRight || null};
+  padding-top: ${(props) => props.paddingTop || null};
 
   @media screen and (min-width: 1200px) {
     max-width: 80%;
@@ -49,21 +69,11 @@ export const GridItem = styled.div`
   padding: 10px;
 `;
 
-interface IText {
+interface IText extends IMargins, IPaddings {
   color?: string;
   display?: "block" | "flex" | "inline" | "inline-flex" | "inline-block" | "none";
   fontSize?: string;
   fontWeight?: string;
-  margin?: string;
-  marginBottom?: string;
-  marginLeft?: string;
-  marginRight?: string;
-  marginTop?: string;
-  padding?: string;
-  paddingLeft?: string;
-  paddingRight?: string;
-  paddingBottom?: string;
-  paddingTop?: string;
   shadow?: string;
   textShadow?: string;
   textAlign?: "center" | "start" | "end";
@@ -91,15 +101,10 @@ export const Text = styled.p<IText>`
   width: ${(props) => props.textShadow || "auto"};
 `;
 
-interface IStack {
+interface IStack extends IMargins {
   direction?: "row" | "column";
   alignItems?: "flex-start" | "center" | "flex-end" | "space-between" | "space-aroud";
   justifyContent?: "flex-start" | "center" | "flex-end" | "space-between" | "space-aroud";
-  margin?: string;
-  marginBottom?: string;
-  marginLeft?: string;
-  marginRight?: string;
-  marginTop?: string;
   maxWidth?: string;
 }
 
