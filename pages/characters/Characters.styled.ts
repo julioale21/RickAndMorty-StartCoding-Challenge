@@ -26,6 +26,7 @@ export const CharacterContainer = styled.div`
   background-repeat: no-repeat;
   padding: 0 1rem;
   padding-top: 80px;
+  min-heigh: 100vh;
   @media screen and (min-width: 768px) {
     padding: 0 4rem;
   }

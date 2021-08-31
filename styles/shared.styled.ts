@@ -18,6 +18,7 @@ interface IPaddings {
 
 export const Container = styled.div<IPaddings>`
   max-width: 90%;
+  min-height: 100vh;
   margin: 0 auto;
   padding: ${(props) => props.padding || 0};
   padding-bottom: ${(props) => props.paddingBottom || null};

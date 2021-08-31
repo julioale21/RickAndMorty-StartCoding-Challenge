@@ -26,6 +26,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: ITheme }>`
     width: 100%;
     border: 0;
     padding: 0;
+    margin: 0;
     font-size: 16px;
   }
   `;
