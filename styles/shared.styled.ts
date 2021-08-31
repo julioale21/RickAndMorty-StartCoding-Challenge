@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import { ITheme, theme } from "../theme";
 
+interface IDivider {
+  color?: string;
+  weight?: string;
+}
+export const HDivider = styled.div<IDivider>`
+  width: 100%;
+  border: ${(props) => `${props.weight || "1px"} solid ${props.color || theme.primaryDark}`};
+`;
+
 export const Grid = styled.div<{ theme: ITheme }>`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -10,7 +19,7 @@ export const Grid = styled.div<{ theme: ITheme }>`
   margin: 0 auto;
 
   @media (min-width: ${theme.tablet}) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @media (min-width: ${theme.desktop}) {
@@ -113,4 +122,13 @@ export const VStack = styled(Stack)`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+`;
+
+interface ISeparator {
+  size: string;
+  isHorizontal?: boolean;
+}
+export const Separator = styled.div<ISeparator>`
+  width: ${(props) => (props.isHorizontal ? props.size : 0)};
+  height: ${(props) => (!props.isHorizontal ? props.size : 0)};
 `;

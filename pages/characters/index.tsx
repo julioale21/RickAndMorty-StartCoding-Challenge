@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { FETCH_CHARACTERS } from "../../apollo/queries/characters";
 import { Button, CharacterContainer, Image, InfoContainer } from "./Characters.styled";
-import { Grid, GridItem } from "../../styles/shared.styled";
+import { Grid, GridItem, Separator } from "../../styles/shared.styled";
 
 import client from "../../apollo/client";
 
@@ -58,11 +58,12 @@ const Characters = ({ defaultCharacters, defaultInfo }) => {
             <GridItem key={item.id}>
               <InfoContainer>
                 <Image alt="image" src={item.image} />
+                <Separator size="15px" />
                 <Text fontSize="1.2rem" fontWeight="bold" textShadow="1px 1px 1px white">
                   {item.name}
                 </Text>
 
-                <Text color="white" margin="0">
+                <Text color="white" margin="0" textShadow="1px 1px 1px">
                   {item.species}
                 </Text>
                 <Button primary onClick={() => handleSelectedCharacter(item)}>
