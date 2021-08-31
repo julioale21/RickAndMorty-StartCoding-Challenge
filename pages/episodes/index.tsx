@@ -4,7 +4,7 @@ import client from "../../apollo/client";
 import { FETCH_EPISODES } from "../../apollo/queries/episodes";
 
 import Episode from "../../models/Episode";
-import { EpisodesContainer, InfoContainer } from "./Episode.styled";
+import { EpisodesContainer, InfoContainer, Image, ImagesContainer } from "./Episode.styled";
 import { Grid, GridItem, Text } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import { Paginator } from "../../components";
@@ -59,8 +59,21 @@ const Episodes: React.FC<Props> = ({ defaultEpisodes, defaultInfo }) => {
         {episodes.map((episode) => (
           <GridItem key={episode.id}>
             <InfoContainer>
-              <Text fontWeight="bold">{episode.name}</Text>
-              <Text color={theme.white}>{episode.episode}</Text>
+              <Text fontSize="1.2em" fontWeight="bold">
+                {episode.name}
+              </Text>
+              <Text color={theme.white} marginTop="0.5em">
+                {episode.episode}
+              </Text>
+              <Text color={theme.white}>{episode.air_date}</Text>
+              <Text fontSize="0.8em" fontWeight="bold" margin="1em 0">
+                Characters:
+              </Text>
+              <ImagesContainer>
+                {episode.characters.slice(0, 10).map((character) => (
+                  <Image key={character.id} src={character.image} width="40px" />
+                ))}
+              </ImagesContainer>
             </InfoContainer>
           </GridItem>
         ))}
