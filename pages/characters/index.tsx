@@ -8,13 +8,13 @@ import {
   InfoContainer,
 } from "./Characters.styled";
 import { Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
-import { Text } from "../../styles/shared.styled";
-import Character from "../../models/Character";
-import { Paginator } from "../../components";
-import { getPageNumber } from "../../utils";
-import CharacterListSkeleton from "../../components/skeletons/CharacterListSkeleton";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacters } from "../../redux/actions/characterActions";
+import { getPageNumber } from "../../utils";
+import { Paginator } from "../../components";
+import { Text } from "../../styles/shared.styled";
+import CharacterListSkeleton from "../../components/skeletons/CharacterListSkeleton";
+import Character from "../../models/Character";
 
 const Characters = () => {
   const dispatch = useDispatch();
