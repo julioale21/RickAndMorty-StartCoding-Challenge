@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
+import { Text } from "../../styles/shared.styled";
 
 interface IButtonProps {
   primary?: boolean;
@@ -17,6 +18,19 @@ export const Button = styled.button<IButtonProps>`
   padding: 0.3rem 1rem;
   :hover {
     background-color: ${theme.primaryHover};
+  }
+`;
+
+export const CharacterTitle = styled(Text)`
+  font-size: 3rem;
+  font-weight: bolder;
+  text-shadow: 2px 2px 2px white;
+
+  @media screen and (min-width: 768px) {
+    font-size: 3rem;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 5rem;
   }
 `;
 
@@ -41,6 +55,7 @@ export const Image = styled.img`
 export const InfoContainer = styled.div`
   align-items: center;
   background: rgba(0, 255, 255, 0.3);
+  border: 1px solid white;
   display: flex;
   flex-direction: column;
   justify-content: center;
