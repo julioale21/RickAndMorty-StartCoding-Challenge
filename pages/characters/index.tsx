@@ -62,12 +62,10 @@ const Characters = () => {
   return (
     <CharacterContainer>
       <Container paddingTop="5em">
-        <CharacterTitle fontWeight="bold" marginBottom="2rem" textShadow="2px 2px 10px">
-          Characters
-        </CharacterTitle>
+        <CharacterTitle marginBottom="2rem">Characters</CharacterTitle>
         {isLoading && <CharacterListSkeleton />}
 
-        {results && (
+        {results && !isLoading ? (
           <>
             <Grid>
               {results.map((item) => {
@@ -99,7 +97,7 @@ const Characters = () => {
               prev={info.prev}
             />
           </>
-        )}
+        ) : null}
       </Container>
     </CharacterContainer>
   );
