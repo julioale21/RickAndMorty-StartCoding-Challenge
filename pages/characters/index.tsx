@@ -18,23 +18,28 @@ import { Paginator } from "../../components";
 import { getPageNumber } from "../../utils";
 import CharacterListSkeleton from "../../components/skeletons/CharacterListSkeleton";
 
-const Characters = ({ defaultCharacters, defaultInfo }) => {
+const initialInfo = {
+  next: null,
+  prev: null,
+};
+const Characters = () => {
   const router = useRouter();
-  const [results, setResults] = useState(defaultCharacters);
+  const [results, setResults] = useState([]);
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [info, setInfo] = useState(defaultInfo);
+  const [info, setInfo] = useState(initialInfo);
   const [page, setPage] = useState(getPageNumber({ ...info }));
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, loading } = await client.query({
+      setLoading(true);
+      const { data } = await client.query({
         query: FETCH_CHARACTERS,
         variables: {
           page,
         },
       });
 
-      setLoading(loading);
+      setLoading(false);
       setResults(data.characters.results);
       setInfo(data.characters.info);
     };
@@ -54,12 +59,13 @@ const Characters = ({ defaultCharacters, defaultInfo }) => {
     setPage(page - 1);
   };
 
-  if (isLoading) return <CharacterListSkeleton />;
-
   return (
     <CharacterContainer>
       <Container paddingTop="5em">
-        <CharacterTitle marginBottom="2rem">Characters</CharacterTitle>
+        <CharacterTitle fontWeight="bold" marginBottom="2rem" textShadow="2px 2px 10px">
+          Characters
+        </CharacterTitle>
+        {isLoading && <CharacterListSkeleton />}
 
         {results && (
           <>
@@ -100,21 +106,3 @@ const Characters = ({ defaultCharacters, defaultInfo }) => {
 };
 
 export default Characters;
-
-export const getServerSideProps = async ({ res }) => {
-  try {
-    const { data } = await client.query({
-      query: FETCH_CHARACTERS,
-    });
-
-    return {
-      props: { defaultCharacters: data.characters.results, defaultInfo: data.characters.info },
-    };
-  } catch (error) {
-    res.statusCode = 404;
-
-    return {
-      props: { error: { message: "Serer not found", code: res.statusCode } },
-    };
-  }
-};
