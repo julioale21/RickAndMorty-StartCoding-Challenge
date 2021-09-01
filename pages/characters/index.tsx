@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { FETCH_CHARACTERS } from "../../apollo/queries/characters";
-import { Button, CharacterContainer, Image, InfoContainer } from "./Characters.styled";
+import {
+  Button,
+  CharacterContainer,
+  CharacterTitle,
+  Image,
+  InfoContainer,
+} from "./Characters.styled";
 import { Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
 
 import client from "../../apollo/client";
@@ -56,7 +62,9 @@ const Characters = () => {
   return (
     <CharacterContainer>
       <Container paddingTop="5em">
-        <h1>Characters</h1>
+        <CharacterTitle fontWeight="bold" marginBottom="2rem" textShadow="2px 2px 10px">
+          Characters
+        </CharacterTitle>
         {isLoading && <CharacterListSkeleton />}
 
         {results && (

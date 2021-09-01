@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Text } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 
 interface IButtonProps {
@@ -29,6 +30,14 @@ export const CharacterContainer = styled.div`
   min-heigh: 100vh;
   @media screen and (min-width: 768px) {
     padding: 0 4rem;
+  }
+`;
+
+export const CharacterTitle = styled(Text)`
+  font-size: 3rem;
+
+  @media screen and (min-width: 768px) {
+    font-size: 5rem;
   }
 `;
 
