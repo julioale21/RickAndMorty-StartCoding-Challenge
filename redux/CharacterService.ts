@@ -10,7 +10,10 @@ class CharacterService {
       },
     });
 
-    return data.characters.results;
+    return {
+      characters: data.characters.results,
+      info: data.characters.info,
+    };
   }
 }
 
