@@ -25,7 +25,7 @@ const initialInfo = {
 const Characters = () => {
   const router = useRouter();
   const [results, setResults] = useState([]);
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState(false);
   const [info, setInfo] = useState(initialInfo);
   const [page, setPage] = useState(getPageNumber({ ...info }));
 
@@ -39,9 +39,9 @@ const Characters = () => {
         },
       });
 
-      setLoading(false);
       setResults(data.characters.results);
       setInfo(data.characters.info);
+      setLoading(false);
     };
 
     fetchData();
@@ -67,7 +67,7 @@ const Characters = () => {
         </CharacterTitle>
         {isLoading && <CharacterListSkeleton />}
 
-        {results && (
+        {results && !isLoading ? (
           <>
             <Grid>
               {results.map((item) => {
@@ -99,7 +99,7 @@ const Characters = () => {
               prev={info.prev}
             />
           </>
-        )}
+        ) : null}
       </Container>
     </CharacterContainer>
   );
