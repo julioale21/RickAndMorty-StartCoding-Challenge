@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { FETCH_CHARACTERS } from "../../apollo/queries/characters";
 import {
   Button,
   CharacterContainer,
@@ -9,43 +8,25 @@ import {
   InfoContainer,
 } from "./Characters.styled";
 import { Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
-
-import client from "../../apollo/client";
-
-import { Text } from "../../styles/shared.styled";
-import Character from "../../models/Character";
-import { Paginator } from "../../components";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
+import { fetchCharacters } from "../../redux/actions/characterActions";
 import { getPageNumber } from "../../utils";
+import { Paginator } from "../../components";
+import { Text } from "../../styles/shared.styled";
 import CharacterListSkeleton from "../../components/skeletons/CharacterListSkeleton";
+import Character from "../../models/Character";
 
-const initialInfo = {
-  next: null,
-  prev: null,
-};
 const Characters = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
-  const [results, setResults] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const [info, setInfo] = useState(initialInfo);
+  const { characters, info, isLoading } = useSelector(
+    (state: RootStateOrAny) => state.charactersReducer,
+  );
   const [page, setPage] = useState(getPageNumber({ ...info }));
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const { data } = await client.query({
-        query: FETCH_CHARACTERS,
-        variables: {
-          page,
-        },
-      });
-
-      setResults(data.characters.results);
-      setInfo(data.characters.info);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [page]);
+    dispatch(fetchCharacters(page));
+  }, [dispatch, page]);
 
   const handleSelectedCharacter = (character: Character) => {
     router.push("/characters/" + character.id);
@@ -62,15 +43,13 @@ const Characters = () => {
   return (
     <CharacterContainer>
       <Container paddingTop="5em">
-        <CharacterTitle fontWeight="bold" marginBottom="2rem" textShadow="2px 2px 10px">
-          Characters
-        </CharacterTitle>
+        <CharacterTitle marginBottom="2rem">Characters</CharacterTitle>
         {isLoading && <CharacterListSkeleton />}
 
-        {results && !isLoading ? (
+        {characters && !isLoading ? (
           <>
             <Grid>
-              {results.map((item) => {
+              {characters.map((item) => {
                 return (
                   <GridItem key={item.id}>
                     <InfoContainer>

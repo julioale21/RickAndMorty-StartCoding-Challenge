@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
 import {
   AvatarContainer,
   Image,
@@ -11,25 +10,36 @@ import {
 } from "./Character.styled";
 import { HStack, Text, VStack } from "../../styles/shared.styled";
 import { theme } from "../../theme";
-import Character from "../../models/Character";
-import { FETCH_CHARACTER_BY_ID } from "../../apollo/queries/characters";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
+import { fetchCharacterById } from "../../redux/actions/characterActions";
 
 const CharacterDetail = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { selectedCharacter: character, isLoading } = useSelector(
+    (state: RootStateOrAny) => state.charactersReducer,
+  );
   const { id } = router.query;
-  let character: Character;
 
-  const { loading, data } = useQuery(FETCH_CHARACTER_BY_ID, {
-    variables: {
-      id,
-    },
-  });
+  useEffect(() => {
+    dispatch(fetchCharacterById(id as string));
+  }, [dispatch, id]);
 
-  if (!loading) {
-    character = data.character;
-  }
+  // let character: Character;
 
-  if (loading) return "Loading...";
+  // const { loading, data } = useQuery(FETCH_CHARACTER_BY_ID, {
+  //   variables: {
+  //     id,
+  //   },
+  // });
+
+  // if (!loading) {
+  //   character = data.character;
+  // }
+
+  if (isLoading) return "Loading...";
+
+  if (!character) return null;
 
   return (
     <MainContainer>
