@@ -1,45 +1,22 @@
 import React, { useEffect, useState } from "react";
-
-import client from "../../apollo/client";
-import { FETCH_EPISODES } from "../../apollo/queries/episodes";
-
-import Episode from "../../models/Episode";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { EpisodesContainer, InfoContainer, Image, ImagesContainer } from "./Episode.styled";
 import { Grid, GridItem, Text } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import { Paginator } from "../../components";
 import { getPageNumber } from "../../utils";
+import { fetchEpisodes } from "../../redux/actions/episodesActions";
 
-interface IInfo {
-  prev: number | null;
-  next: number | null;
-}
-
-interface Props {
-  defaultInfo: IInfo;
-  defaultEpisodes: Episode[];
-}
-
-const Episodes: React.FC<Props> = ({ defaultEpisodes, defaultInfo }) => {
-  const [episodes, setEpisodes] = useState<Episode[]>(defaultEpisodes);
-  const [info, setInfo] = useState<IInfo>(defaultInfo);
+const Episodes: React.FC = () => {
+  const dispatch = useDispatch();
+  const { episodes, info, isLoading } = useSelector(
+    (state: RootStateOrAny) => state.episodesReducer,
+  );
   const [page, setPage] = useState(getPageNumber({ ...info }));
 
   useEffect(() => {
-    const fetchEpisodes = async () => {
-      const { data } = await client.query({
-        query: FETCH_EPISODES,
-        variables: {
-          page,
-        },
-      });
-
-      setEpisodes(data.episodes.results);
-      setInfo(data.episodes.info);
-    };
-
-    fetchEpisodes();
-  }, [page]);
+    dispatch(fetchEpisodes(page));
+  }, [page, dispatch]);
 
   const handleNextPage = () => {
     setPage(page + 1);
@@ -54,6 +31,8 @@ const Episodes: React.FC<Props> = ({ defaultEpisodes, defaultInfo }) => {
       <Text fontSize="3rem" fontWeight="bolder" marginBottom="2rem" textShadow="2px 2px 2px white">
         Episodes
       </Text>
+
+      {isLoading && <h1>Cargando...</h1>}
 
       <Grid>
         {episodes.map((episode) => (
@@ -93,24 +72,3 @@ const Episodes: React.FC<Props> = ({ defaultEpisodes, defaultInfo }) => {
 };
 
 export default Episodes;
-
-export const getServerSideProps = async ({ res }) => {
-  try {
-    const { data } = await client.query({
-      query: FETCH_EPISODES,
-    });
-
-    return {
-      props: {
-        defaultEpisodes: data.episodes.results,
-        defaultInfo: data.episodes.info,
-      },
-    };
-  } catch (error) {
-    res.statusCode = 404;
-
-    return {
-      props: { error: { message: "Server not found", code: res.statusCode } },
-    };
-  }
-};
