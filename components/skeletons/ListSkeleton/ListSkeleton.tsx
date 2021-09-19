@@ -4,7 +4,7 @@ import SkeletonItem from "../SkeletonItem";
 
 const array = Array.from({ length: 10 }, (_, index) => index);
 
-const CharacterListSkeleton: React.FC = () => {
+const ListSkeleton: React.FC = () => {
   return (
     <Grid>
       {array.map((item) => (
@@ -14,4 +14,4 @@ const CharacterListSkeleton: React.FC = () => {
   );
 };
 
-export default CharacterListSkeleton;
+export default ListSkeleton;

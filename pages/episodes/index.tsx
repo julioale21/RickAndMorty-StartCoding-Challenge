@@ -6,6 +6,7 @@ import { theme } from "../../theme";
 import { Paginator } from "../../components";
 import { getPageNumber } from "../../utils";
 import { fetchEpisodes } from "../../redux/actions/episodesActions";
+import ListSkeleton from "../../components/skeletons/ListSkeleton";
 
 const Episodes: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,41 +33,43 @@ const Episodes: React.FC = () => {
         Episodes
       </Text>
 
-      {isLoading && <h1>Cargando...</h1>}
+      {isLoading && <ListSkeleton />}
 
-      <Grid>
-        {episodes.map((episode) => (
-          <GridItem key={episode.id}>
-            <InfoContainer>
-              <Text fontSize="1.2em" fontWeight="bold">
-                {episode.name}
-              </Text>
-              <Text color={theme.white} marginTop="0.5em">
-                {episode.episode}
-              </Text>
-              <Text color={theme.white}>{episode.air_date}</Text>
-              <Text fontSize="0.8em" fontWeight="bold" margin="1em 0">
-                Characters:
-              </Text>
-              <ImagesContainer>
-                {episode.characters.slice(0, 10).map((character) => (
-                  <Image key={character.id} src={character.image} width="40px" />
-                ))}
-              </ImagesContainer>
-            </InfoContainer>
-          </GridItem>
-        ))}
-      </Grid>
+      {episodes && !isLoading ? (
+        <>
+          <Grid>
+            {episodes.map((episode) => (
+              <GridItem key={episode.id}>
+                <InfoContainer>
+                  <Text fontSize="1.2em" fontWeight="bold">
+                    {episode.name}
+                  </Text>
+                  <Text color={theme.white} marginTop="0.5em">
+                    {episode.episode}
+                  </Text>
+                  <Text color={theme.white}>{episode.air_date}</Text>
+                  <Text fontSize="0.8em" fontWeight="bold" margin="1em 0">
+                    Characters:
+                  </Text>
+                  <ImagesContainer>
+                    {episode.characters.slice(0, 10).map((character) => (
+                      <Image key={character.id} src={character.image} width="40px" />
+                    ))}
+                  </ImagesContainer>
+                </InfoContainer>
+              </GridItem>
+            ))}
+          </Grid>
 
-      {episodes && (
-        <Paginator
-          handleNext={handleNextPage}
-          handlePrev={handlePrevPage}
-          next={info.next}
-          page={page}
-          prev={info.prev}
-        />
-      )}
+          <Paginator
+            handleNext={handleNextPage}
+            handlePrev={handlePrevPage}
+            next={info.next}
+            page={page}
+            prev={info.prev}
+          />
+        </>
+      ) : null}
     </EpisodesContainer>
   );
 };

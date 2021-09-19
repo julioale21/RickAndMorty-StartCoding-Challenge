@@ -13,7 +13,7 @@ import { fetchCharacters } from "../../redux/actions/characterActions";
 import { getPageNumber } from "../../utils";
 import { Paginator } from "../../components";
 import { Text } from "../../styles/shared.styled";
-import CharacterListSkeleton from "../../components/skeletons/CharacterListSkeleton";
+import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Character from "../../models/Character";
 
 const Characters = () => {
@@ -44,7 +44,7 @@ const Characters = () => {
     <CharacterContainer>
       <Container paddingTop="5em">
         <CharacterTitle marginBottom="2rem">Characters</CharacterTitle>
-        {isLoading && <CharacterListSkeleton />}
+        {isLoading && <ListSkeleton />}
 
         {characters && !isLoading ? (
           <>
