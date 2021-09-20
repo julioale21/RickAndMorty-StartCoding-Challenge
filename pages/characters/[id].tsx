@@ -12,6 +12,7 @@ import { HStack, Text, VStack } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacterById } from "../../redux/actions/characterActions";
+import { addToFavorites } from "../../redux/actions/favoritesActions";
 
 const CharacterDetail = () => {
   const router = useRouter();
@@ -25,17 +26,9 @@ const CharacterDetail = () => {
     dispatch(fetchCharacterById(id as string));
   }, [dispatch, id]);
 
-  // let character: Character;
-
-  // const { loading, data } = useQuery(FETCH_CHARACTER_BY_ID, {
-  //   variables: {
-  //     id,
-  //   },
-  // });
-
-  // if (!loading) {
-  //   character = data.character;
-  // }
+  const handleSelected = () => {
+    dispatch(addToFavorites(character));
+  };
 
   if (isLoading) return "Loading...";
 
@@ -85,6 +78,8 @@ const CharacterDetail = () => {
           </Text>
           <Text>{character.status}</Text>
         </VStack>
+
+        <button onClick={handleSelected}>Add</button>
       </VStack>
       <HStack>
         <ImageContainer>
