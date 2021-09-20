@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Text } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 interface IButtonProps {
   primary?: boolean;
@@ -20,26 +19,13 @@ export const Button = styled.button<IButtonProps>`
   }
 `;
 
-export const CharacterTitle = styled(Text)`
-  font-size: 3rem;
-  font-weight: bolder;
-  text-shadow: 2px 2px 2px white;
-
-  @media screen and (min-width: 768px) {
-    font-size: 3rem;
-  }
-  @media screen and (min-width: 1200px) {
-    font-size: 5rem;
-  }
-`;
-
 export const CharacterContainer = styled.div`
   background-image: url("/rick_and_morty-2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0 1rem;
   padding-top: 80px;
-  min-heigh: 100vh;
+  min-height: 100vh;
   @media screen and (min-width: 768px) {
     padding: 0 4rem;
   }

@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  Button,
-  CharacterContainer,
-  CharacterTitle,
-  Image,
-  InfoContainer,
-} from "./Characters.styled";
+import { Button, CharacterContainer, Image, InfoContainer } from "./Characters.styled";
 import { Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacters } from "../../redux/actions/characterActions";
 import { getPageNumber } from "../../utils";
 import { Paginator } from "../../components";
-import { Text } from "../../styles/shared.styled";
+import { Text, Title } from "../../styles/shared.styled";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Character from "../../models/Character";
 
@@ -43,7 +37,7 @@ const Characters = () => {
   return (
     <CharacterContainer>
       <Container paddingTop="5em">
-        <CharacterTitle marginBottom="2rem">Characters</CharacterTitle>
+        <Title marginBottom="2rem">Characters</Title>
         {isLoading && <ListSkeleton />}
 
         {characters && !isLoading ? (

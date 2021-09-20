@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { EpisodesContainer, InfoContainer, Image, ImagesContainer } from "./Episode.styled";
-import { Grid, GridItem, Text } from "../../styles/shared.styled";
+import { Grid, GridItem, Text, Title } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import { Paginator } from "../../components";
 import { getPageNumber } from "../../utils";
@@ -29,9 +29,9 @@ const Episodes: React.FC = () => {
 
   return (
     <EpisodesContainer>
-      <Text fontSize="3rem" fontWeight="bolder" marginBottom="2rem" textShadow="2px 2px 2px white">
+      <Title marginBottom="2rem" paddingTop="5rem">
         Episodes
-      </Text>
+      </Title>
 
       {isLoading && <ListSkeleton />}
 

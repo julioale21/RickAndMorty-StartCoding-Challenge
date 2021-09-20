@@ -102,6 +102,19 @@ export const Text = styled.p<IText>`
   width: ${(props) => props.textShadow || "auto"};
 `;
 
+export const Title = styled(Text)`
+  font-size: 3rem;
+  font-weight: bolder;
+  text-shadow: 2px 2px 2px white;
+
+  @media screen and (min-width: 768px) {
+    font-size: 3rem;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 5rem;
+  }
+`;
+
 interface IStack extends IMargins {
   direction?: "row" | "column";
   alignItems?: "flex-start" | "center" | "flex-end" | "space-between" | "space-aroud";

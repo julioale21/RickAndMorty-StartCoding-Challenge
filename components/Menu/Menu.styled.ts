@@ -6,12 +6,13 @@ export const StyledMenu = styled.nav<{ theme: ITheme; open: boolean }>`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  min-height: calc(100vh + 2rem);
   justify-content: center;
   left: 0;
   padding: 2rem;
   position: absolute;
   text-align: left;
-  top: 0;
+  top: -2rem;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
   transition: transform 0.3s ease-in-out;
 

@@ -4,8 +4,10 @@ export const EpisodesContainer = styled.div`
   background-image: url("/rick-and-morty-03.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 100px;
   min-height: 100vh;
+  @media screen and (min-width: 768px) {
+    padding: 0 10rem;
+  }
 `;
 
 export const InfoContainer = styled.div`

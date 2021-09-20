@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { LocationsContainer, LocationItem } from "./Locations.styled";
-import { Grid, GridItem, Text } from "../../styles/shared.styled";
+import { Grid, GridItem, Text, Title } from "../../styles/shared.styled";
 import { fetchLocations } from "../../redux/actions/locationActions";
 import { getPageNumber } from "../../utils";
 import { Paginator } from "../../components";
@@ -31,9 +31,9 @@ const Locations: React.FC = () => {
 
   return (
     <LocationsContainer>
-      <Text fontSize="3rem" fontWeight="bolder" marginBottom="2rem" textShadow="2px 2px 2px white">
+      <Title marginBottom="2rem" paddingTop="5rem">
         Locations
-      </Text>
+      </Title>
 
       {isLoading && <ListSkeleton />}
 
