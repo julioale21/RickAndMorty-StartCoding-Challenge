@@ -1,7 +1,25 @@
 import React from "react";
 import Head from "next/head";
+import { Provider, RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import store from "../redux/store";
+import { fetchFavorites } from "../redux/actions/favoritesActions";
 
-export default function Home() {
+const AppWrapper = () => {
+  return (
+    <Provider store={store}>
+      <Home />
+    </Provider>
+  );
+};
+
+const Home = () => {
+  const dispatch = useDispatch();
+  const { favorites, isLoading } = useSelector((state: RootStateOrAny) => state.favoritesReducer);
+
+  React.useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch]);
+
   return (
     <div>
       <Head>
@@ -15,4 +33,6 @@ export default function Home() {
       </main>
     </div>
   );
-}
+};
+
+export default AppWrapper;
