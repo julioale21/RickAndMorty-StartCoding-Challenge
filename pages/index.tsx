@@ -2,9 +2,10 @@ import React from "react";
 import Head from "next/head";
 import { Provider, RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import store from "../redux/store";
-import { Text, Title } from "../styles/shared.styled";
-import { fetchFavorites } from "../redux/actions/favoritesActions";
+import { Grid, GridItem, Text, Title } from "../styles/shared.styled";
+import { fetchFavorites, removeFromFavorites } from "../redux/actions/favoritesActions";
 import { FavoritesContainer, HomeContainer } from "./Home.styled";
+import Character from "../models/Character";
 
 const AppWrapper = () => {
   return (
@@ -22,6 +23,10 @@ const Home = () => {
     dispatch(fetchFavorites());
   }, [dispatch]);
 
+  const handleDeleteFavorite = (favorite: Character) => {
+    dispatch(removeFromFavorites(favorite));
+  };
+
   return (
     <HomeContainer>
       <Head>
@@ -32,7 +37,21 @@ const Home = () => {
 
       <FavoritesContainer>
         <Title fontSize="6rem">Home</Title>
-        {favorites && favorites.map((favorite) => <Text key={favorite.id}>{favorite.name}</Text>)}
+        {favorites && (
+          <Grid>
+            {favorites.map((favorite: Character) => (
+              <GridItem key={favorite.id}>
+                <img alt={favorite.name} src={favorite.image} />
+                <Text fontSize="2rem">{favorite.name}</Text>
+                <Text>{favorite.species}</Text>
+                <div>
+                  <button>View</button>
+                  <button onClick={() => handleDeleteFavorite(favorite)}>Delete</button>
+                </div>
+              </GridItem>
+            ))}
+          </Grid>
+        )}
       </FavoritesContainer>
     </HomeContainer>
   );
