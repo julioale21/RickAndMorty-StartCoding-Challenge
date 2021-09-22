@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { Provider, RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import store from "../redux/store";
 import { Grid, GridItem, Text, Title } from "../styles/shared.styled";
 import { fetchFavorites, removeFromFavorites } from "../redux/actions/favoritesActions";
@@ -16,6 +17,7 @@ const AppWrapper = () => {
 };
 
 const Home = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const { favorites, isLoading } = useSelector((state: RootStateOrAny) => state.favoritesReducer);
 
@@ -25,6 +27,10 @@ const Home = () => {
 
   const handleDeleteFavorite = (favorite: Character) => {
     dispatch(removeFromFavorites(favorite));
+  };
+
+  const handleViewSelected = (favorite: Character) => {
+    router.push("/characters/" + favorite.id);
   };
 
   return (
@@ -45,7 +51,7 @@ const Home = () => {
                 <Text fontSize="2rem">{favorite.name}</Text>
                 <Text>{favorite.species}</Text>
                 <div>
-                  <button>View</button>
+                  <button onClick={() => handleViewSelected(favorite)}>View</button>
                   <button onClick={() => handleDeleteFavorite(favorite)}>Delete</button>
                 </div>
               </GridItem>
