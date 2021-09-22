@@ -43,20 +43,20 @@ const Characters = () => {
         {characters && !isLoading ? (
           <>
             <Grid>
-              {characters.map((item) => {
+              {characters.map((character: Character) => {
                 return (
-                  <GridItem key={item.id}>
+                  <GridItem key={character.id}>
                     <InfoContainer>
-                      <Image alt="image" src={item.image} />
+                      <Image alt="image" src={character.image} />
                       <Separator size="15px" />
                       <Text fontSize="1.2rem" fontWeight="bold" textShadow="1px 1px 1px white">
-                        {item.name}
+                        {character.name}
                       </Text>
 
                       <Text color="white" margin="0" textShadow="1px 1px 1px">
-                        {item.species}
+                        {character.species}
                       </Text>
-                      <Button primary onClick={() => handleSelectedCharacter(item)}>
+                      <Button primary onClick={() => handleSelectedCharacter(character)}>
                         View
                       </Button>
                     </InfoContainer>
