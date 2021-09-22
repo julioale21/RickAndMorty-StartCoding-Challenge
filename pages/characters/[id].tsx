@@ -13,21 +13,34 @@ import { theme } from "../../theme";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacterById } from "../../redux/actions/characterActions";
 import { addToFavorites } from "../../redux/actions/favoritesActions";
+import Character from "../../models/Character";
 
 const CharacterDetail = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { selectedCharacter: character, isLoading } = useSelector(
+  const { isLoading, selectedCharacter: character } = useSelector(
     (state: RootStateOrAny) => state.charactersReducer,
   );
+
+  const { favorites } = useSelector((state: RootStateOrAny) => state.favoritesReducer);
+
   const { id } = router.query;
 
   useEffect(() => {
     dispatch(fetchCharacterById(id as string));
   }, [dispatch, id]);
 
+  const exists = React.useMemo(() => {
+    if (character) {
+      return favorites.filter((item: Character) => item.id == character.id).length > 0;
+    }
+
+    return false;
+  }, [favorites, character]);
+
   const handleSelected = () => {
     dispatch(addToFavorites(character));
+    router.push("/");
   };
 
   if (isLoading) return "Loading...";
@@ -79,7 +92,13 @@ const CharacterDetail = () => {
           <Text>{character.status}</Text>
         </VStack>
 
-        <button onClick={handleSelected}>Add</button>
+        {!exists ? (
+          <button onClick={handleSelected}>Add</button>
+        ) : (
+          <Text color="red" marginTop="1rem">
+            Already in favorites
+          </Text>
+        )}
       </VStack>
       <HStack>
         <ImageContainer>
