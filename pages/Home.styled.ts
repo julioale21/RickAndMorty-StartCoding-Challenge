@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { Text } from "../styles/shared.styled";
-import { theme } from "../theme";
 
 export const FavoritesContainer = styled.div`
   padding-top: 4rem;
