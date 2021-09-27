@@ -1,3 +1,4 @@
+import { FETCH_EPISODE_BY_ID } from "./../apollo/queries/episodes";
 import client from "../apollo/client";
 import { FETCH_EPISODES } from "../apollo/queries/episodes";
 import IInfo from "../interfaces/IInfo";
@@ -21,6 +22,17 @@ class EpisodeService {
       episodes: data.episodes.results,
       info: data.episodes.info,
     };
+  }
+
+  static async fetchEpisodeById(id: string): Promise<Episode> {
+    const { data } = await client.query({
+      query: FETCH_EPISODE_BY_ID,
+      variables: {
+        id,
+      },
+    });
+
+    return data.episode;
   }
 }
 

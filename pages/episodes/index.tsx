@@ -8,9 +8,11 @@ import { getPageNumber } from "../../utils";
 import { fetchEpisodes } from "../../redux/actions/episodesActions";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Episode from "../../models/Episode";
+import { useRouter } from "next/router";
 
 const Episodes: React.FC = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { episodes, info, isLoading } = useSelector(
     (state: RootStateOrAny) => state.episodesReducer,
   );
@@ -29,7 +31,7 @@ const Episodes: React.FC = () => {
   };
 
   const handleSelectedEpisode = (episode: Episode) => {
-    console.log(episode);
+    router.push("/episodes/" + episode.id);
   };
 
   return (

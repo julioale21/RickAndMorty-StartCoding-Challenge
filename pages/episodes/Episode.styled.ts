@@ -10,6 +10,17 @@ export const EpisodesContainer = styled.div`
   }
 `;
 
+export const EpisodeDetailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-item: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  max-width: 80%;
+  margin: 0 auto;
+`;
+
 export const InfoContainer = styled.div`
   align-items: center;
   background: rgba(0, 0, 0, 0.3);

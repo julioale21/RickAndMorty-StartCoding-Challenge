@@ -6,6 +6,7 @@ export default interface IAction extends Action {
   type: string;
   payload: {
     episodes: Episode[];
+    selectedEpisode: Episode;
     info: IInfo;
     isLoading: boolean;
   };
