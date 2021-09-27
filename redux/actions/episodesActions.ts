@@ -8,7 +8,6 @@ export const fetchEpisodes = (page?: number) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);
   EpisodesService.fetchEpisodes(page)
     .then((data) => {
-      console.log(data);
       dispatch({
         type: FETCH_EPISODES,
         payload: { episodes: data.episodes, info: data.info },

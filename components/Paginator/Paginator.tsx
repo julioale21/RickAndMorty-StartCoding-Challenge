@@ -23,7 +23,7 @@ const Paginator: React.FC<Props> = ({ page, next, prev, handleNext, handlePrev }
 };
 
 Paginator.defaultProps = {
-  page: 0,
+  page: 1,
   pageCount: 1,
   next: 0,
   prev: 0,

@@ -7,6 +7,7 @@ import { Paginator } from "../../components";
 import { getPageNumber } from "../../utils";
 import { fetchEpisodes } from "../../redux/actions/episodesActions";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
+import Episode from "../../models/Episode";
 
 const Episodes: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,10 @@ const Episodes: React.FC = () => {
 
   const handlePrevPage = () => {
     setPage(page - 1);
+  };
+
+  const handleSelectedEpisode = (episode: Episode) => {
+    console.log(episode);
   };
 
   return (
@@ -56,6 +61,7 @@ const Episodes: React.FC = () => {
                       <Image key={character.id} src={character.image} width="40px" />
                     ))}
                   </ImagesContainer>
+                  <button onClick={() => handleSelectedEpisode(episode)}>View</button>
                 </InfoContainer>
               </GridItem>
             ))}
