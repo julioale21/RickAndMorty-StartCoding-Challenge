@@ -22,7 +22,7 @@ const Menu: React.FC<Props> = ({ open }) => {
       </Link>
 
       <Link href="/locations">
-        <a>Places</a>
+        <a>Locations</a>
       </Link>
     </StyledMenu>
   );

@@ -3,6 +3,7 @@ import Location from "../../../models/Location";
 
 export default interface IState {
   locations: Location[];
+  selectedLocation: Location;
   info: IInfo;
   isLoading: boolean;
 }

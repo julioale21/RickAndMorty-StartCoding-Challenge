@@ -1,5 +1,5 @@
 import client from "../apollo/client";
-import { FETCH_LOCATIONS } from "../apollo/queries/locations";
+import { FETCH_LOCATIONS, FETCH_LOCATION_BY_ID } from "../apollo/queries/locations";
 import IInfo from "../interfaces/IInfo";
 import Location from "../models/Location";
 
@@ -21,6 +21,17 @@ class LocationsService {
       locations: data.locations.results,
       info: data.locations.info,
     };
+  }
+
+  static async fetchLocationById(id: string): Promise<Location> {
+    const { data } = await client.query({
+      query: FETCH_LOCATION_BY_ID,
+      variables: {
+        id,
+      },
+    });
+
+    return data.location;
   }
 }
 

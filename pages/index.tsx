@@ -1,25 +1,16 @@
 import React from "react";
 import Head from "next/head";
-import { Provider, RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import store from "../redux/store";
 import { Grid, GridItem, Text, Title } from "../styles/shared.styled";
 import { fetchFavorites, removeFromFavorites } from "../redux/actions/favoritesActions";
 import { FavoritesContainer, HomeContainer } from "./Home.styled";
 import Character from "../models/Character";
 
-const AppWrapper = () => {
-  return (
-    <Provider store={store}>
-      <Home />
-    </Provider>
-  );
-};
-
 const Home = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { favorites, isLoading } = useSelector((state: RootStateOrAny) => state.favoritesReducer);
+  const { favorites } = useSelector((state: RootStateOrAny) => state.favoritesReducer);
 
   React.useEffect(() => {
     dispatch(fetchFavorites());
@@ -63,4 +54,4 @@ const Home = () => {
   );
 };
 
-export default AppWrapper;
+export default Home;

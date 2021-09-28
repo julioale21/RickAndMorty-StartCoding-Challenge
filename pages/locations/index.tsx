@@ -6,10 +6,13 @@ import { fetchLocations } from "../../redux/actions/locationActions";
 import { getPageNumber } from "../../utils";
 import { Paginator } from "../../components";
 import { theme } from "../../theme";
+import { useRouter } from "next/router";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
+import Location from "../../models/Location";
 
 const Locations: React.FC = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { locations, info, isLoading } = useSelector(
     (state: RootStateOrAny) => state.locationsReducer,
   );
@@ -27,6 +30,10 @@ const Locations: React.FC = () => {
     setPage(page + 1);
   };
 
+  const handleSelected = (location: Location) => {
+    router.push("/locations/" + location.id);
+  };
+
   if (!locations) return null;
 
   return (
@@ -40,7 +47,7 @@ const Locations: React.FC = () => {
       {locations && !isLoading ? (
         <>
           <Grid>
-            {locations.map((location) => (
+            {locations.map((location: Location) => (
               <GridItem key={location.id}>
                 <LocationItem>
                   <Text color={theme.primaryLight} fontWeight="bold">
@@ -48,6 +55,7 @@ const Locations: React.FC = () => {
                   </Text>
                   <Text>{location.type}</Text>
                   <Text>{location.dimension}</Text>
+                  <button onClick={() => handleSelected(location)}>View</button>
                 </LocationItem>
               </GridItem>
             ))}

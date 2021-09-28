@@ -23,3 +23,14 @@ export const LocationItem = styled.div`
   justify-content: center;
   width: 100%;
 `;
+
+export const LocationDetailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-item: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  max-width: 80%;
+  margin: 0 auto;
+`;

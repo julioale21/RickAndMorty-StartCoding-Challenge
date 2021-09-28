@@ -6,6 +6,7 @@ export default interface IAction extends Action {
   type: string;
   payload: {
     locations: Location[];
+    selectedLocation: Location;
     info: IInfo;
     isLoading: boolean;
   };
