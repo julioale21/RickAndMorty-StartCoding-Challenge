@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  Button,
-  CharacterContainer,
-  Image,
-  InfoContainer,
-  NoResultsContainer,
-  SearchInput,
-  SearchInputContainer,
-} from "./Characters.styled";
+import { Button, CharacterContainer, Image, InfoContainer } from "./Characters.styled";
+import { NoResultsContainer, SearchInput, SearchInputContainer } from "../Search.styled";
 import { Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacters } from "../../redux/actions/characterActions";

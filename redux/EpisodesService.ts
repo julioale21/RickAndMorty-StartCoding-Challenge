@@ -10,11 +10,14 @@ interface PaginatedEpisodes {
 }
 
 class EpisodeService {
-  static async fetchEpisodes(page?: number): Promise<PaginatedEpisodes> {
+  static async fetchEpisodes(page?: number, name?: string): Promise<PaginatedEpisodes> {
     const { data } = await client.query({
       query: FETCH_EPISODES,
       variables: {
         page,
+        filter: {
+          name,
+        },
       },
     });
 

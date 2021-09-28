@@ -9,6 +9,7 @@ import { fetchEpisodes } from "../../redux/actions/episodesActions";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Episode from "../../models/Episode";
 import { useRouter } from "next/router";
+import { SearchInput, SearchInputContainer } from "../Search.styled";
 
 const Episodes: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,12 @@ const Episodes: React.FC = () => {
     (state: RootStateOrAny) => state.episodesReducer,
   );
   const [page, setPage] = useState(getPageNumber({ ...info }));
+  const [inputValue, setInputValue] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    dispatch(fetchEpisodes(page));
-  }, [page, dispatch]);
+    dispatch(fetchEpisodes(page, search));
+  }, [page, search, dispatch]);
 
   const handleNextPage = () => {
     setPage(page + 1);
@@ -34,11 +37,30 @@ const Episodes: React.FC = () => {
     router.push("/episodes/" + episode.id);
   };
 
+  React.useMemo(() => {
+    if (inputValue.length > 3 || inputValue.length === 0) {
+      setSearch(inputValue);
+    }
+  }, [inputValue]);
+
+  const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setInputValue(e.currentTarget.value);
+  };
+
   return (
     <EpisodesContainer>
       <Title marginBottom="2rem" paddingTop="5rem">
         Episodes
       </Title>
+
+      <SearchInputContainer>
+        <SearchInput
+          placeholder="Search name"
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+      </SearchInputContainer>
 
       {isLoading && <ListSkeleton />}
 
