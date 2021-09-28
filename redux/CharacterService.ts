@@ -9,11 +9,14 @@ interface PaginatedCharacters {
 }
 
 class CharacterService {
-  static async fetchCharacters(page?: number): Promise<PaginatedCharacters> {
+  static async fetchCharacters(page?: number, name?: string): Promise<PaginatedCharacters> {
     const { data } = await client.query({
       query: FETCH_CHARACTERS,
       variables: {
         page,
+        filter: {
+          name,
+        },
       },
     });
 

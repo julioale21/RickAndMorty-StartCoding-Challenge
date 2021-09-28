@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Button, CharacterContainer, Image, InfoContainer } from "./Characters.styled";
+import {
+  Button,
+  CharacterContainer,
+  Image,
+  InfoContainer,
+  NoResultsContainer,
+  SearchInput,
+  SearchInputContainer,
+} from "./Characters.styled";
 import { Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacters } from "../../redux/actions/characterActions";
@@ -17,10 +25,12 @@ const Characters = () => {
     (state: RootStateOrAny) => state.charactersReducer,
   );
   const [page, setPage] = useState(getPageNumber({ ...info }));
+  const [inputValue, setInputValue] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    dispatch(fetchCharacters(page));
-  }, [dispatch, page]);
+    dispatch(fetchCharacters(page, search));
+  }, [dispatch, page, search]);
 
   const handleSelectedCharacter = (character: Character) => {
     router.push("/characters/" + character.id);
@@ -34,13 +44,32 @@ const Characters = () => {
     setPage(page - 1);
   };
 
+  React.useMemo(() => {
+    if (inputValue.length > 3 || inputValue.length === 0) {
+      setSearch(inputValue);
+    }
+  }, [inputValue]);
+
+  const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setInputValue(e.currentTarget.value);
+  };
+
   return (
     <CharacterContainer>
       <Container paddingTop="5em">
         <Title marginBottom="2rem">Characters</Title>
+        <SearchInputContainer>
+          <SearchInput
+            placeholder="Search name"
+            type="text"
+            value={inputValue}
+            onChange={handleSearchChange}
+          />
+        </SearchInputContainer>
+
         {isLoading && <ListSkeleton />}
 
-        {characters && !isLoading ? (
+        {characters.length && !isLoading ? (
           <>
             <Grid>
               {characters.map((character: Character) => {
@@ -72,7 +101,11 @@ const Characters = () => {
               prev={info.prev}
             />
           </>
-        ) : null}
+        ) : (
+          <NoResultsContainer>
+            <Text color="white">No results found</Text>
+          </NoResultsContainer>
+        )}
       </Container>
     </CharacterContainer>
   );

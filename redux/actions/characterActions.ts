@@ -4,9 +4,9 @@ import { Dispatch } from "redux";
 import CharacterService from "../CharacterService";
 import { setIsLoading } from "./commonActions";
 
-export const fetchCharacters = (page?: number) => async (dispatch: Dispatch) => {
+export const fetchCharacters = (page?: number, name?: string) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);
-  CharacterService.fetchCharacters(page)
+  CharacterService.fetchCharacters(page, name)
     .then((data) => {
       dispatch({
         type: FETCH_CHARACTERS,
@@ -15,7 +15,15 @@ export const fetchCharacters = (page?: number) => async (dispatch: Dispatch) => 
 
       setIsLoading(false, dispatch);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      dispatch({
+        type: FETCH_CHARACTERS,
+        payload: { characters: [], info: { next: 0, prev: 0 } },
+      });
+
+      setIsLoading(false, dispatch);
+      console.log(error);
+    });
 };
 
 export const fetchCharacterById = (id: string) => async (dispatch: Dispatch) => {
