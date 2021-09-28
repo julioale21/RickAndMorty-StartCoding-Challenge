@@ -3,7 +3,6 @@ import { FETCH_LOCATIONS, FETCH_LOCATION_BY_ID } from "./types";
 import { Dispatch } from "redux";
 import LocationsService from "../LocationsService";
 import { setIsLoading } from "./commonActions";
-import { FragmentsOnCompositeTypesRule } from "graphql";
 
 export const fetchLocations = (page?: number) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);
