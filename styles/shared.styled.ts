@@ -16,19 +16,10 @@ interface IPaddings {
   paddingTop?: string;
 }
 
-interface IDisplay {
-  display?: string;
-  direction?: string;
-}
-
-interface IContainer extends IPaddings, IDisplay {}
-
-export const Container = styled.div<IContainer>`
+export const Container = styled.div<IPaddings>`
   max-width: 90%;
   min-height: 100vh;
   margin: 0 auto;
-  display: ${(props) => props.display || "block"};
-  flex-direction: ${(props) => props.direction || "column"};
   padding: ${(props) => props.padding || 0};
   padding-bottom: ${(props) => props.paddingBottom || null};
   padding-left: ${(props) => props.paddingLeft || null};
