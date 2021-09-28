@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const EpisodeCharacter = styled.div`
+  flex-grow: 1;
+`;
+
+export const EpisodeCharactersContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+`;
+
+export const EpisodeCharacterImage = styled.img`
+  max-width: 150px;
+`;
+
 export const EpisodesContainer = styled.div`
   background-image: url("/rick-and-morty-03.jpg");
   background-repeat: no-repeat;

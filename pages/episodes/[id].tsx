@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { fetchEpisodeById } from "../../redux/actions/episodesActions";
-import { EpisodeDetailContainer } from "./Episode.styled";
+import {
+  EpisodeCharacter,
+  EpisodeCharacterImage,
+  EpisodeCharactersContainer,
+  EpisodeDetailContainer,
+} from "./Episode.styled";
 
 const EpisodeDetail = () => {
   const router = useRouter();
@@ -25,6 +30,16 @@ const EpisodeDetail = () => {
       <h1>{episode.name}</h1>
       <h3>{episode.air_date}</h3>
       <h3>{episode.episode}</h3>
+      <h2>Episode Characters:</h2>
+      <EpisodeCharactersContainer>
+        {episode.characters.map((character) => {
+          return (
+            <EpisodeCharacter key={character.id}>
+              <EpisodeCharacterImage alt={character.name} src={character.image} />
+            </EpisodeCharacter>
+          );
+        })}
+      </EpisodeCharactersContainer>
     </EpisodeDetailContainer>
   );
 };
