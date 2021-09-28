@@ -9,7 +9,7 @@ import { fetchEpisodes } from "../../redux/actions/episodesActions";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Episode from "../../models/Episode";
 import { useRouter } from "next/router";
-import { SearchInput, SearchInputContainer } from "../Search.styled";
+import { NoResultsContainer, SearchInput, SearchInputContainer } from "../Search.styled";
 
 const Episodes: React.FC = () => {
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const Episodes: React.FC = () => {
 
       {isLoading && <ListSkeleton />}
 
-      {episodes && !isLoading ? (
+      {episodes.length && !isLoading ? (
         <>
           <Grid>
             {episodes.map((episode) => (
@@ -99,7 +99,11 @@ const Episodes: React.FC = () => {
             prev={info.prev}
           />
         </>
-      ) : null}
+      ) : (
+        <NoResultsContainer>
+          <Text color="white">No results found</Text>
+        </NoResultsContainer>
+      )}
     </EpisodesContainer>
   );
 };

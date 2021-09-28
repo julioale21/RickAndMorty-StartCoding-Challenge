@@ -4,9 +4,9 @@ import { Dispatch } from "redux";
 import LocationsService from "../LocationsService";
 import { setIsLoading } from "./commonActions";
 
-export const fetchLocations = (page?: number) => async (dispatch: Dispatch) => {
+export const fetchLocations = (page?: number, name?: string) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);
-  LocationsService.fetchLocations(page)
+  LocationsService.fetchLocations(page, name)
     .then((data) => {
       dispatch({
         type: FETCH_LOCATIONS,
@@ -15,7 +15,15 @@ export const fetchLocations = (page?: number) => async (dispatch: Dispatch) => {
 
       setIsLoading(false, dispatch);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      dispatch({
+        type: FETCH_LOCATIONS,
+        payload: { locations: [], info: { next: 0, prev: 0 } },
+      });
+
+      setIsLoading(false, dispatch);
+      console.log(error);
+    });
 };
 
 export const fetchLocationById = (id: string) => async (dispatch: Dispatch) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { LocationsContainer, LocationItem } from "./Locations.styled";
 import { Grid, GridItem, Text, Title } from "../../styles/shared.styled";
@@ -9,6 +9,7 @@ import { theme } from "../../theme";
 import { useRouter } from "next/router";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Location from "../../models/Location";
+import { NoResultsContainer, SearchInput, SearchInputContainer } from "../Search.styled";
 
 const Locations: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,18 @@ const Locations: React.FC = () => {
     (state: RootStateOrAny) => state.locationsReducer,
   );
   const [page, setPage] = useState<number>(getPageNumber({ next: info.next, prev: info.prev }));
+  const [inputValue, setInputValue] = useState("");
+  const [search, setSearch] = useState("");
+
+  useMemo(() => {
+    if (inputValue.length > 3 || inputValue.length === 0) {
+      setSearch(inputValue);
+    }
+  }, [inputValue]);
 
   useEffect(() => {
-    dispatch(fetchLocations(page));
-  }, [page, dispatch]);
+    dispatch(fetchLocations(page, search));
+  }, [page, search, dispatch]);
 
   const handlePrevPage = () => {
     setPage(page - 1);
@@ -34,7 +43,9 @@ const Locations: React.FC = () => {
     router.push("/locations/" + location.id);
   };
 
-  if (!locations) return null;
+  const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setInputValue(e.currentTarget.value);
+  };
 
   return (
     <LocationsContainer>
@@ -42,9 +53,18 @@ const Locations: React.FC = () => {
         Locations
       </Title>
 
+      <SearchInputContainer>
+        <SearchInput
+          placeholder="Search name"
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+      </SearchInputContainer>
+
       {isLoading && <ListSkeleton />}
 
-      {locations && !isLoading ? (
+      {locations.length && !isLoading ? (
         <>
           <Grid>
             {locations.map((location: Location) => (
@@ -69,7 +89,11 @@ const Locations: React.FC = () => {
             prev={info.prev}
           />
         </>
-      ) : null}
+      ) : (
+        <NoResultsContainer>
+          <Text color="white">No results found</Text>
+        </NoResultsContainer>
+      )}
     </LocationsContainer>
   );
 };
