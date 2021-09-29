@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Button, CharacterContainer, Image, InfoContainer } from "./Characters.styled";
+import { CharacterContainer, Image, InfoContainer } from "./Characters.styled";
 import { NoResultsContainer, SearchInput, SearchInputContainer } from "../Search.styled";
-import { Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
+import { BasicButton, Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacters } from "../../redux/actions/characterActions";
 import { getPageNumber } from "../../utils";
@@ -78,9 +78,9 @@ const Characters = () => {
                       <Text color="white" margin="0" textShadow="1px 1px 1px">
                         {character.species}
                       </Text>
-                      <Button primary onClick={() => handleSelectedCharacter(character)}>
+                      <BasicButton primary onClick={() => handleSelectedCharacter(character)}>
                         View
-                      </Button>
+                      </BasicButton>
                     </InfoContainer>
                   </GridItem>
                 );

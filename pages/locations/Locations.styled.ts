@@ -22,6 +22,7 @@ export const LocationItem = styled.div`
   height: 100%;
   justify-content: center;
   width: 100%;
+  padding: 1rem;
 `;
 
 export const LocationDetailContainer = styled.div`

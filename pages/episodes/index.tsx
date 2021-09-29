@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { EpisodesContainer, InfoContainer, Image, ImagesContainer } from "./Episode.styled";
-import { Grid, GridItem, Text, Title } from "../../styles/shared.styled";
+import { BasicButton, Grid, GridItem, Text, Title } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import { Paginator } from "../../components";
 import { getPageNumber } from "../../utils";
@@ -85,7 +85,7 @@ const Episodes: React.FC = () => {
                       <Image key={character.id} src={character.image} width="40px" />
                     ))}
                   </ImagesContainer>
-                  <button onClick={() => handleSelectedEpisode(episode)}>View</button>
+                  <BasicButton onClick={() => handleSelectedEpisode(episode)}>View</BasicButton>
                 </InfoContainer>
               </GridItem>
             ))}

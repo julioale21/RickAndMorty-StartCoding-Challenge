@@ -1,23 +1,5 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
-interface IButtonProps {
-  primary?: boolean;
-}
-
-export const Button = styled.button<IButtonProps>`
-  background: ${(props) => (props.primary ? `${theme.primaryLight}` : "white")};
-  border-radius: 10px;
-  border: 2px solid ${theme.primaryLight};
-  color: ${(props) => (props.primary ? "white" : `${theme.primaryLight}`)};
-  cursor: pointer;
-  font-size: 1em;
-  margin: 1em;
-  min-width: 100px;
-  padding: 0.3rem 1rem;
-  :hover {
-    background-color: ${theme.primaryHover};
-  }
-`;
 
 export const CharacterContainer = styled.div`
   background-image: url("/rick_and_morty-2.jpg");
