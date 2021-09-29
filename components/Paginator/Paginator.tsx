@@ -3,7 +3,6 @@ import { Page, PageButton, PaginatorContainer } from "./Paginator.styled";
 
 interface Props {
   page?: number;
-  pageCount?: number;
   next?: number;
   prev?: number;
   handlePrev?: () => void;
@@ -24,7 +23,6 @@ const Paginator: React.FC<Props> = ({ page, next, prev, handleNext, handlePrev }
 
 Paginator.defaultProps = {
   page: 1,
-  pageCount: 1,
   next: 0,
   prev: 0,
   handlePrev: () => {},

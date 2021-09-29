@@ -20,6 +20,21 @@ export const BasicButton = styled.button<IButtonProps>`
   }
 `;
 
+export const DeleteButton = styled.button<IButtonProps>`
+  background: ${(props) => (props.primary ? `${theme.primaryLight}` : "white")};
+  border-radius: 10px;
+  border: 2px solid red;
+  color: ${(props) => (props.primary ? "white" : `red`)};
+  cursor: pointer;
+  font-size: 1em;
+  margin: 1em;
+  min-width: 100px;
+  padding: 0.3rem 1rem;
+  :hover {
+    background-color: ${theme.primaryHover};
+  }
+`;
+
 interface IMargins {
   margin?: string;
   marginBottom?: string;

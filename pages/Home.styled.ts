@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const ActionsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const CharacterImage = styled.img`
+  border-radius: 1rem;
+  max-width: 200px;
+`;
+
 export const FavoritesContainer = styled.div`
   padding-top: 4rem;
   display: flex:
