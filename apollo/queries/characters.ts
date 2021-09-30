@@ -32,23 +32,12 @@ export const FETCH_CHARACTER_BY_ID = gql`
       type
       gender
       origin {
-        id
         name
       }
       location {
-        id
         name
       }
       image
-      episode {
-        id
-        name
-        episode
-        characters {
-          id
-          name
-        }
-      }
     }
   }
 `;

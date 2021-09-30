@@ -21,12 +21,11 @@ const Home = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
-    console.log("cambio");
     const totalPages = Math.ceil(favorites.length / 10);
 
     setTotalPages(totalPages);
     const offset = (page - 1) * 10 - 1;
-    const filtered = favorites.slice(offset > 0 ? offset : 0, 10);
+    const filtered = favorites.slice(offset > 0 ? offset : 0, offset + 10);
 
     setFilteredFavorites(filtered);
   }, [favorites, page]);

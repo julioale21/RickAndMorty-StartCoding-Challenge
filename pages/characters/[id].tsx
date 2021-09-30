@@ -40,7 +40,7 @@ const CharacterDetail = () => {
 
   const handleSelected = () => {
     dispatch(addToFavorites(character));
-    router.push("/");
+    //router.push("/");
   };
 
   if (isLoading) return "Loading...";
