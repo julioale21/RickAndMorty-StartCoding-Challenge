@@ -14,6 +14,7 @@ import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacterById } from "../../redux/actions/characterActions";
 import { addToFavorites, fetchFavorites } from "../../redux/actions/favoritesActions";
 import Character from "../../models/Character";
+import Loading from "../../components/Loading/Loading";
 
 const CharacterDetail = () => {
   const router = useRouter();
@@ -47,7 +48,7 @@ const CharacterDetail = () => {
     //router.push("/");
   };
 
-  if (!character) return <iframe src="https://embed.lottiefiles.com/animation/9965"></iframe>;
+  if (!character) return <Loading />;
 
   return (
     <MainContainer>

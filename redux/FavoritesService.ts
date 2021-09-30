@@ -5,8 +5,6 @@ class FavoritesService {
     try {
       const serializedItems = localStorage.getItem(LOCAL_STORAGE_ITEM);
 
-      console.log(serializedItems);
-
       if (serializedItems === null) {
         return [];
       }
@@ -18,7 +16,6 @@ class FavoritesService {
   }
 
   public static saveState(favoritesCharacters) {
-    console.log(favoritesCharacters);
     try {
       const serializedItems = JSON.stringify(favoritesCharacters);
 
