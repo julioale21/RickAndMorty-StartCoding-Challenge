@@ -27,7 +27,14 @@ export const fetchCharacters = (page?: number, name?: string) => async (dispatch
 };
 
 export const fetchCharacterById = (id: string) => async (dispatch: Dispatch) => {
+  if (!id) return;
   setIsLoading(true, dispatch);
+  dispatch({
+    type: FETCH_CHARACTER_BY_ID,
+    payload: {
+      selectedCharacter: null,
+    },
+  });
   CharacterService.fetchCharacterById(id)
     .then((character) => {
       dispatch({
@@ -36,7 +43,16 @@ export const fetchCharacterById = (id: string) => async (dispatch: Dispatch) => 
           selectedCharacter: character,
         },
       });
-      setIsLoading(false, dispatch);
     })
-    .catch((error) => console.log(error));
+    .catch(() => {
+      dispatch({
+        type: FETCH_CHARACTER_BY_ID,
+        payload: {
+          selectedCharacter: null,
+        },
+      });
+    })
+    .finally(() => {
+      setIsLoading(false, dispatch);
+    });
 };
