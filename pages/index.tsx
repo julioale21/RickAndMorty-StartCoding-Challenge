@@ -21,7 +21,6 @@ const Home = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
-    console.log("cambio");
     const totalPages = Math.ceil(favorites.length / 10);
 
     setTotalPages(totalPages);

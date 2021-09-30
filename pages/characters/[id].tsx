@@ -12,13 +12,13 @@ import { HStack, Text, VStack } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacterById } from "../../redux/actions/characterActions";
-import { addToFavorites } from "../../redux/actions/favoritesActions";
+import { addToFavorites, fetchFavorites } from "../../redux/actions/favoritesActions";
 import Character from "../../models/Character";
 
 const CharacterDetail = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { isLoading, selectedCharacter: character } = useSelector(
+  const { selectedCharacter: character } = useSelector(
     (state: RootStateOrAny) => state.charactersReducer,
   );
 
@@ -27,7 +27,10 @@ const CharacterDetail = () => {
   const { id } = router.query;
 
   useEffect(() => {
+    dispatch(fetchFavorites());
     dispatch(fetchCharacterById(id as string));
+
+    return;
   }, [dispatch, id]);
 
   const exists = React.useMemo(() => {
@@ -39,13 +42,12 @@ const CharacterDetail = () => {
   }, [favorites, character]);
 
   const handleSelected = () => {
+    dispatch(fetchFavorites());
     dispatch(addToFavorites(character));
     router.push("/");
   };
 
-  if (isLoading) return "Loading...";
-
-  if (!character) return null;
+  if (!character) return <iframe src="https://embed.lottiefiles.com/animation/9965"></iframe>;
 
   return (
     <MainContainer>
