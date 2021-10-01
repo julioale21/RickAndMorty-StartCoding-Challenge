@@ -2,7 +2,7 @@
 <br/><br/>
 
 <p align="center">
-    <img height="100" src="https://www.alkemy.org/assets/images/logo-header.png">
+    <img height="100" src="https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=height:60/https://www.filepicker.io/api/file/MQ7g16QSQhaKHkDUFOFn">
    </p>
    
    
@@ -70,60 +70,46 @@ Los cambios del usuario deberán persistir, no sólo mientras el mismo se encuen
     - Se valorará la experiencia del usuario durante el proceso de carga de información (loading).
     - El diseño es de elección libre, sin perjuicio de lo cual se deja el siguiente layout a modo de referencia.
 
-## Demo
-[https://alkemy-superheroes-challenge-5os7z4jsx-julioale21.vercel.app/home](https://alkemy-superheroes-challenge-5os7z4jsx-julioale21.vercel.app/home).
 
-To be able to do login on demo you must allow cors in your browser and configure the site as secure.
 
-Go padlock in url box
+## Proyecto
 
-Go to site configuration.
+### Herramientas
 
-Go to unsafe content
-
-Check allow option.
-
-## Project
-
-### Tools
-
+- Nextjs
 - React.js
-- Vite.js
-- Bootstrap
-- Formik
-- Yup
-- AOS animation
-- React-toats-notification
-- React-countup
+- Styled Components
+- Redux
+- Lottie
 - Axios
 - Release-it
 
-### Project Structure
-The files are structured as follow:
+### Estructura del proyecto
+Los archivos del proyecto estan estructurados de la siguiente manera:
 
-    .
-    ├── public              # Static Files
-    ├── src
-        ├── assets          # App resources like images
-        ├── components      # Stateless components
-        ├── Context         # Global state  
-        ├── models          # Entities
-        ├── screens         # Pages that make up the app 
-        ├── services        # Set of software functionalities that different clients can reuse for different purposes
-        ├── types           # custom types
-        App.css
-        App.tsx
-        main.tsx
-    ├── CONTRIBUTING.md      # Document the conventions used in this project.
+    ├── apollo              
+    ├── components
+    ├── hooks         
+    ├── interfaces     
+    ├── models           
+    ├── pages  
+        _app.tsx
+        index.tsx
+        404.tsx
+    ├── public          
+    ├── redux       
+    ├── styles   
+    ├── utils  
+
     └── README.md            # The first page that the user will view when will visit the repository.
 
-## Requirements
+## Requirimientos técnicos
 * npm or yarn
 * Git
 
-## Local deployment
+## Despliegue local
 
-* Clone repository.
-* Execute the command `npm install`
-* add .env file and the current variable VITE_SEARCH_URL=https://superheroapi.com/api/10222145357517937/search/
-* Execute the command `npm run dev`
+* Clonar el repositorio.
+* Ejecutar el comando `npm install`
+* Agregar en .env la siguiente variable API_URL=hhttps://rickandmortyapi.com/graphql
+* Ejecutar el comando `npm run dev`
