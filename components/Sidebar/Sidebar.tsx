@@ -1,5 +1,6 @@
 import React from "react";
 import { Menu, Burger } from "../../components";
+import { SidebarContainer } from "./Sidebar.styled";
 
 interface Props {
   open: boolean;
@@ -8,10 +9,10 @@ interface Props {
 }
 const Sidebar: React.FC<Props> = ({ open, setOpen, node }) => {
   return (
-    <div ref={node}>
+    <SidebarContainer ref={node}>
       <Burger open={open} setOpen={setOpen} />
       <Menu open={open} />
-    </div>
+    </SidebarContainer>
   );
 };
 

@@ -9,16 +9,20 @@ interface Props {
 const Menu: React.FC<Props> = ({ open }) => {
   return (
     <StyledMenu open={open}>
-      <Link href="/home">
+      <Link href="/">
         <a>Home</a>
       </Link>
 
-      <Link href="/home">
+      <Link href="/characters">
         <a>Characters</a>
       </Link>
 
-      <Link href="/home">
+      <Link href="/episodes">
         <a>Episodes</a>
+      </Link>
+
+      <Link href="/locations">
+        <a>Locations</a>
       </Link>
     </StyledMenu>
   );

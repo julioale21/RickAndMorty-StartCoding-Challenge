@@ -16,29 +16,28 @@ export const FETCH_CHARACTERS = gql`
         species
         type
         gender
-        origin {
-          id
-          name
-          type
-          dimension
-        }
-        location {
-          id
-          name
-          type
-          dimension
-        }
         image
-        episode {
-          id
-          name
-          episode
-          characters {
-            id
-            name
-          }
-        }
       }
+    }
+  }
+`;
+
+export const FETCH_CHARACTER_BY_ID = gql`
+  query ($id: ID!) {
+    character(id: $id) {
+      id
+      name
+      status
+      species
+      type
+      gender
+      origin {
+        name
+      }
+      location {
+        name
+      }
+      image
     }
   }
 `;
