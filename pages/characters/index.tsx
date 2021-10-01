@@ -17,6 +17,7 @@ import { Text, Title } from "../../styles/shared.styled";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Character from "../../models/Character";
 import { fetchFavorites } from "../../redux/actions/favoritesActions";
+import CharactersFilterForm from "../../components/CharactersFilterForm";
 
 const Characters = () => {
   const dispatch = useDispatch();
@@ -26,11 +27,9 @@ const Characters = () => {
   );
   const { favorites } = useSelector((state: RootStateOrAny) => state.favoritesReducer);
   const [page, setPage] = useState(getPageNumber({ ...info }));
-  const [inputValue, setInputValue] = useState("");
   const [search, setSearch] = useState({});
 
   useEffect(() => {
-    console.log(search);
     dispatch(fetchFavorites());
     dispatch(fetchCharacters(page, search));
   }, [dispatch, page, search]);
@@ -47,22 +46,8 @@ const Characters = () => {
     setPage(page - 1);
   };
 
-  React.useMemo(() => {
-    if (inputValue.length > 3 || inputValue.length === 0) {
-      setSearch({ ...search, name: inputValue });
-    }
-  }, [inputValue]);
-
-  const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setInputValue(e.currentTarget.value);
-  };
-
   const isAlreadyInFavorites = (character: Character) => {
     return favorites.filter((item: Character) => item.id == character.id).length > 0;
-  };
-
-  const handleRadioChange = (e: any) => {
-    setSearch({ ...search, [e.target.name]: e.target.value });
   };
 
   return (
@@ -70,91 +55,8 @@ const Characters = () => {
       <CharacterContainer>
         <Container paddingTop="5em">
           <Title marginBottom="2rem">Characters</Title>
-          <SearchInputContainer>
-            <SearchInput
-              placeholder="Search name"
-              type="text"
-              value={inputValue}
-              onChange={handleSearchChange}
-            />
-          </SearchInputContainer>
+          <CharactersFilterForm onFilterChange={(filter) => setSearch(filter)} />
 
-          <RadioButtonContainer>
-            <RadioButtonLabel>
-              <input
-                id="status"
-                name="status"
-                type="radio"
-                value="Alive"
-                onChange={handleRadioChange}
-              />
-              Alive
-            </RadioButtonLabel>
-            <RadioButtonLabel>
-              <input
-                id="status"
-                name="status"
-                type="radio"
-                value="Dead"
-                onChange={handleRadioChange}
-              />
-              Dead
-            </RadioButtonLabel>
-            <RadioButtonLabel>
-              <input
-                defaultChecked
-                id="status"
-                name="status"
-                type="radio"
-                value=""
-                onChange={handleRadioChange}
-              />
-              All
-            </RadioButtonLabel>
-          </RadioButtonContainer>
-          <RadioButtonContainer>
-            <RadioButtonLabel>
-              <input
-                id="species"
-                name="species"
-                type="radio"
-                value="Human"
-                onChange={handleRadioChange}
-              />
-              Human
-            </RadioButtonLabel>
-            <RadioButtonLabel>
-              <input
-                id="species"
-                name="species"
-                type="radio"
-                value="Alien"
-                onChange={handleRadioChange}
-              />
-              Alien
-            </RadioButtonLabel>
-            <RadioButtonLabel>
-              <input
-                id="species"
-                name="species"
-                type="radio"
-                value="Animal"
-                onChange={handleRadioChange}
-              />
-              Animal
-            </RadioButtonLabel>
-            <RadioButtonLabel>
-              <input
-                defaultChecked
-                id="species"
-                name="species"
-                type="radio"
-                value=""
-                onChange={handleRadioChange}
-              />
-              All
-            </RadioButtonLabel>
-          </RadioButtonContainer>
           {isLoadingCharacters && <ListSkeleton />}
 
           {characters.length && !isLoadingCharacters ? (
