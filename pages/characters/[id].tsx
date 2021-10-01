@@ -46,7 +46,7 @@ const CharacterDetail = () => {
   const handleSelected = () => {
     dispatch(fetchFavorites());
     dispatch(addToFavorites(character));
-    //router.push("/");
+    router.push("/characters");
   };
 
   if (isLoadingCharacters) return <Loading />;

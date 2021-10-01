@@ -10,6 +10,7 @@ import { Paginator } from "../../components";
 import { Text, Title } from "../../styles/shared.styled";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Character from "../../models/Character";
+import { fetchFavorites } from "../../redux/actions/favoritesActions";
 
 const Characters = () => {
   const dispatch = useDispatch();
@@ -17,11 +18,13 @@ const Characters = () => {
   const { characters, info, isLoadingCharacters } = useSelector(
     (state: RootStateOrAny) => state.charactersReducer,
   );
+  const { favorites } = useSelector((state: RootStateOrAny) => state.favoritesReducer);
   const [page, setPage] = useState(getPageNumber({ ...info }));
   const [inputValue, setInputValue] = useState("");
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    dispatch(fetchFavorites());
     dispatch(fetchCharacters(page, search));
   }, [dispatch, page, search]);
 
@@ -45,6 +48,10 @@ const Characters = () => {
 
   const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
+  };
+
+  const isAlreadyInFavorites = (character: Character) => {
+    return favorites.filter((item: Character) => item.id == character.id).length > 0;
   };
 
   return (
@@ -78,9 +85,15 @@ const Characters = () => {
                       <Text color="white" margin="0" textShadow="1px 1px 1px">
                         {character.species}
                       </Text>
-                      <BasicButton primary onClick={() => handleSelectedCharacter(character)}>
-                        View
-                      </BasicButton>
+                      {isAlreadyInFavorites(character) ? (
+                        <Text color="red" marginBottom="1.5rem" marginTop="1rem">
+                          Already in favorites
+                        </Text>
+                      ) : (
+                        <BasicButton primary onClick={() => handleSelectedCharacter(character)}>
+                          View
+                        </BasicButton>
+                      )}
                     </InfoContainer>
                   </GridItem>
                 );

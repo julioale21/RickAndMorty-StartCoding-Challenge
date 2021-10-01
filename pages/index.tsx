@@ -4,7 +4,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { BasicButton, DeleteButton, Grid, GridItem, Text, Title } from "../styles/shared.styled";
 import { fetchFavorites, removeFromFavorites } from "../redux/actions/favoritesActions";
-import { ActionsContainer, CharacterImage, FavoritesContainer, HomeContainer } from "./Home.styled";
+import { ActionsContainer, CharacterImage, FavoritesContainer, GridHome, HomeContainer } from "./Home.styled";
 import Character from "../models/Character";
 import Paginator from "../components/Paginator";
 
@@ -56,7 +56,7 @@ const Home = () => {
       <FavoritesContainer>
         <Title fontSize="6rem">Home</Title>
         {filteredFavorites.length && (
-          <Grid>
+          <GridHome>
             {filteredFavorites.map((favorite: Character) => (
               <GridItem key={favorite.id}>
                 <CharacterImage alt={favorite.name} src={favorite.image} />
@@ -70,7 +70,7 @@ const Home = () => {
                 </ActionsContainer>
               </GridItem>
             ))}
-          </Grid>
+          </GridHome>
         )}
         <Paginator
           handleNext={handleNextPage}

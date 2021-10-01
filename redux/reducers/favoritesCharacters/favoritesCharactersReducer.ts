@@ -18,7 +18,6 @@ const favoritesCharactersReducer = (state = INITIAL_STATE, action: IAction): ISt
       };
 
     case ADD_TO_FAVORITES:
-      console.log(action.payload.favorite);
       FavoritesService.saveState(state.favorites.concat(action.payload.favorite));
 
       return {

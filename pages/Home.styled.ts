@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ITheme, theme } from "../theme";
 
 export const ActionsContainer = styled.div`
   display: flex;
@@ -16,6 +17,30 @@ export const FavoritesContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  @media screen and (min-width: 768px) {
+    padding: 0 4rem;
+  }
+`;
+
+export const GridHome = styled.div<{ theme: ITheme }>`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 2rem;
+  grid-auto-rows: minmax(100px, auto);
+  padding: 1rem;
+  margin: 0 auto;
+
+  @media (min-width: ${theme.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: ${theme.desktop}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1400px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 export const HomeContainer = styled.div`
@@ -23,7 +48,8 @@ export const HomeContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0 1rem;
-  min-height: calc(100vh + 2rem);
+  padding-top: 80px;
+  min-height: 100vh;
   @media screen and (min-width: 768px) {
     padding: 0 4rem;
   }
