@@ -33,7 +33,7 @@ const CharactersFilterForm: React.FC<Props> = ({ onFilterChange }) => {
   };
 
   return (
-    <div>
+    <>
       <SearchInputContainer>
         <SearchInput
           placeholder="Search name"
@@ -113,7 +113,7 @@ const CharactersFilterForm: React.FC<Props> = ({ onFilterChange }) => {
           All
         </RadioButtonLabel>
       </RadioButtonContainer>
-    </div>
+    </>
   );
 };
 
