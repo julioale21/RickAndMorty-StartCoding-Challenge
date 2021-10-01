@@ -1,8 +1,16 @@
 /* eslint-disable no-console */
-import { FETCH_CHARACTERS, FETCH_CHARACTER_BY_ID } from "./types";
+import { FETCH_CHARACTERS, FETCH_CHARACTER_BY_ID, SET_ISLOADING_CHARACTERS } from "./types";
 import { Dispatch } from "redux";
 import CharacterService from "../CharacterService";
-import { setIsLoading } from "./commonActions";
+
+export const setIsLoading = (isLoading: boolean, dispatch: Dispatch) => {
+  dispatch({
+    type: SET_ISLOADING_CHARACTERS,
+    payload: {
+      isLoadingCharacters: isLoading,
+    },
+  });
+};
 
 export const fetchCharacters = (page?: number, name?: string) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);

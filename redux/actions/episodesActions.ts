@@ -1,8 +1,16 @@
 /* eslint-disable no-console */
 import { Dispatch } from "redux";
 import EpisodesService from "../EpisodesService";
-import { setIsLoading } from "./commonActions";
-import { FETCH_EPISODES, FETCH_EPISODE_BY_ID } from "./types";
+import { FETCH_EPISODES, FETCH_EPISODE_BY_ID, SET_ISLOADING_EPISODES } from "./types";
+
+export const setIsLoading = (isLoading: boolean, dispatch: Dispatch) => {
+  dispatch({
+    type: SET_ISLOADING_EPISODES,
+    payload: {
+      isLoadingEpisodes: isLoading,
+    },
+  });
+};
 
 export const fetchEpisodes = (page?: number, name?: string) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);

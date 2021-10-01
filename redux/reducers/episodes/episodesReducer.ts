@@ -1,4 +1,4 @@
-import { FETCH_EPISODES, FETCH_EPISODE_BY_ID, SET_ISLOADING } from "../../actions/types";
+import { FETCH_EPISODES, FETCH_EPISODE_BY_ID, SET_ISLOADING_EPISODES } from "../../actions/types";
 import IAction from "./IAction";
 import { INITIAL_STATE } from "./InitialState";
 import IState from "./IState";
@@ -18,10 +18,10 @@ const episodesReducer = (state = INITIAL_STATE, action: IAction): IState => {
         selectedEpisode: action.payload.selectedEpisode,
       };
 
-    case SET_ISLOADING:
+    case SET_ISLOADING_EPISODES:
       return {
         ...state,
-        isLoading: action.payload.isLoading,
+        isLoadingEpisodes: action.payload.isLoadingEpisodes,
       };
 
     default:

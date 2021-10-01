@@ -8,6 +8,6 @@ export default interface IAction extends Action {
     characters: Character[];
     selectedCharacter: Character;
     info: IInfo;
-    isLoading: boolean;
+    isLoadingCharacters: boolean;
   };
 }

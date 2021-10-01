@@ -1,8 +1,16 @@
 /* eslint-disable no-console */
-import { FETCH_LOCATIONS, FETCH_LOCATION_BY_ID } from "./types";
+import { FETCH_LOCATIONS, FETCH_LOCATION_BY_ID, SET_ISLOADING_LOCATIONS } from "./types";
 import { Dispatch } from "redux";
 import LocationsService from "../LocationsService";
-import { setIsLoading } from "./commonActions";
+
+export const setIsLoading = (isLoading: boolean, dispatch: Dispatch) => {
+  dispatch({
+    type: SET_ISLOADING_LOCATIONS,
+    payload: {
+      isLoadingLocations: isLoading,
+    },
+  });
+};
 
 export const fetchLocations = (page?: number, name?: string) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);

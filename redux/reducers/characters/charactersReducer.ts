@@ -1,4 +1,8 @@
-import { FETCH_CHARACTERS, FETCH_CHARACTER_BY_ID, SET_ISLOADING } from "../../actions/types";
+import {
+  FETCH_CHARACTERS,
+  FETCH_CHARACTER_BY_ID,
+  SET_ISLOADING_CHARACTERS,
+} from "../../actions/types";
 import { INITIAL_STATE } from "./InitialState";
 import IAction from "./IAction";
 import IState from "./IState";
@@ -18,10 +22,10 @@ const charactersReducer = (state = INITIAL_STATE, action: IAction): IState => {
         selectedCharacter: action.payload.selectedCharacter,
       };
 
-    case SET_ISLOADING:
+    case SET_ISLOADING_CHARACTERS:
       return {
         ...state,
-        isLoading: action.payload.isLoading,
+        isLoadingCharacters: action.payload.isLoadingCharacters,
       };
 
     default:

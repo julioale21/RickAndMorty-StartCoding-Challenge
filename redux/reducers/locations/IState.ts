@@ -5,5 +5,5 @@ export default interface IState {
   locations: Location[];
   selectedLocation: Location;
   info: IInfo;
-  isLoading: boolean;
+  isLoadingLocations: boolean;
 }

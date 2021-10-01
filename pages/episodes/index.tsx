@@ -14,7 +14,7 @@ import { NoResultsContainer, SearchInput, SearchInputContainer } from "../Search
 const Episodes: React.FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { episodes, info, isLoading } = useSelector(
+  const { episodes, info, isLoadingEpisodes } = useSelector(
     (state: RootStateOrAny) => state.episodesReducer,
   );
   const [page, setPage] = useState(getPageNumber({ ...info }));
@@ -62,9 +62,9 @@ const Episodes: React.FC = () => {
         />
       </SearchInputContainer>
 
-      {isLoading && <ListSkeleton />}
+      {isLoadingEpisodes && <ListSkeleton />}
 
-      {episodes.length && !isLoading ? (
+      {episodes.length && !isLoadingEpisodes ? (
         <>
           <Grid>
             {episodes.map((episode) => (

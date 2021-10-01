@@ -8,6 +8,6 @@ export default interface IAction extends Action {
     episodes: Episode[];
     selectedEpisode: Episode;
     info: IInfo;
-    isLoading: boolean;
+    isLoadingEpisodes: boolean;
   };
 }

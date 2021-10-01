@@ -8,6 +8,6 @@ export default interface IAction extends Action {
     locations: Location[];
     selectedLocation: Location;
     info: IInfo;
-    isLoading: boolean;
+    isLoadingLocations: boolean;
   };
 }

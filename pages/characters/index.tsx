@@ -14,7 +14,7 @@ import Character from "../../models/Character";
 const Characters = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { characters, info, isLoading } = useSelector(
+  const { characters, info, isLoadingCharacters } = useSelector(
     (state: RootStateOrAny) => state.charactersReducer,
   );
   const [page, setPage] = useState(getPageNumber({ ...info }));
@@ -60,9 +60,9 @@ const Characters = () => {
           />
         </SearchInputContainer>
 
-        {isLoading && <ListSkeleton />}
+        {isLoadingCharacters && <ListSkeleton />}
 
-        {characters.length && !isLoading ? (
+        {characters.length && !isLoadingCharacters ? (
           <>
             <Grid>
               {characters.map((character: Character) => {

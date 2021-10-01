@@ -9,7 +9,7 @@ const LocationDetail = () => {
   const dispatch = useDispatch();
   const { id } = router.query;
 
-  const { isLoading, selectedLocation } = useSelector(
+  const { isLoadingLocations, selectedLocation } = useSelector(
     (state: RootStateOrAny) => state.locationsReducer,
   );
 
@@ -19,7 +19,7 @@ const LocationDetail = () => {
     }
   }, [dispatch, id]);
 
-  if (isLoading) return "Is loading...";
+  if (isLoadingLocations) return "Is loading...";
   if (!selectedLocation) return "";
 
   return (

@@ -1,4 +1,8 @@
-import { FETCH_LOCATIONS, FETCH_LOCATION_BY_ID, SET_ISLOADING } from "../../actions/types";
+import {
+  FETCH_LOCATIONS,
+  FETCH_LOCATION_BY_ID,
+  SET_ISLOADING_LOCATIONS,
+} from "../../actions/types";
 import IAction from "./IAction";
 import { INITIAL_STATE } from "./InitialState";
 import IState from "./IState";
@@ -18,10 +22,10 @@ const locationsReducer = (state = INITIAL_STATE, action: IAction): IState => {
         selectedLocation: action.payload.selectedLocation,
       };
 
-    case SET_ISLOADING:
+    case SET_ISLOADING_LOCATIONS:
       return {
         ...state,
-        isLoading: action.payload.isLoading,
+        isLoadingLocations: action.payload.isLoadingLocations,
       };
 
     default:

@@ -5,5 +5,5 @@ export default interface IState {
   characters: Character[];
   selectedCharacter: Character;
   info: IInfo;
-  isLoading: boolean;
+  isLoadingCharacters: boolean;
 }

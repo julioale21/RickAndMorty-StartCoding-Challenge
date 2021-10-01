@@ -5,5 +5,5 @@ export default interface IState {
   episodes: Episode[];
   selectedEpisode: Episode;
   info: IInfo;
-  isLoading: boolean;
+  isLoadingEpisodes: boolean;
 }

@@ -12,7 +12,7 @@ import {
 const EpisodeDetail = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { isLoading, selectedEpisode: episode } = useSelector(
+  const { isLoadingEpisodes, selectedEpisode: episode } = useSelector(
     (state: RootStateOrAny) => state.episodesReducer,
   );
 
@@ -22,7 +22,7 @@ const EpisodeDetail = () => {
     dispatch(fetchEpisodeById(id as string));
   }, [dispatch, id]);
 
-  if (isLoading) return "Loading...";
+  if (isLoadingEpisodes) return "Loading...";
   if (!episode) return <h1>No data</h1>;
 
   return (
