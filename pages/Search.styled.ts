@@ -44,3 +44,9 @@ export const RadioButtonLabel = styled.label`
   align-items: center;
   margin: 0 0.5rem;
 `;
+
+export const RadioButton = styled.input`
+  &:checked {
+    background-color: red;
+  }
+`;

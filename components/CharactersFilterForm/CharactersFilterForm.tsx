@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import {
+  RadioButton,
   RadioButtonContainer,
   RadioButtonLabel,
   SearchInput,
@@ -45,7 +46,7 @@ const CharactersFilterForm: React.FC<Props> = ({ onFilterChange }) => {
 
       <RadioButtonContainer>
         <RadioButtonLabel>
-          <input
+          <RadioButton
             id="status"
             name="status"
             type="radio"
@@ -55,11 +56,17 @@ const CharactersFilterForm: React.FC<Props> = ({ onFilterChange }) => {
           Alive
         </RadioButtonLabel>
         <RadioButtonLabel>
-          <input id="status" name="status" type="radio" value="Dead" onChange={handleRadioChange} />
+          <RadioButton
+            id="status"
+            name="status"
+            type="radio"
+            value="Dead"
+            onChange={handleRadioChange}
+          />
           Dead
         </RadioButtonLabel>
         <RadioButtonLabel>
-          <input
+          <RadioButton
             defaultChecked
             id="status"
             name="status"
@@ -72,7 +79,7 @@ const CharactersFilterForm: React.FC<Props> = ({ onFilterChange }) => {
       </RadioButtonContainer>
       <RadioButtonContainer>
         <RadioButtonLabel>
-          <input
+          <RadioButton
             id="species"
             name="species"
             type="radio"
@@ -82,7 +89,7 @@ const CharactersFilterForm: React.FC<Props> = ({ onFilterChange }) => {
           Human
         </RadioButtonLabel>
         <RadioButtonLabel>
-          <input
+          <RadioButton
             id="species"
             name="species"
             type="radio"
@@ -92,7 +99,7 @@ const CharactersFilterForm: React.FC<Props> = ({ onFilterChange }) => {
           Alien
         </RadioButtonLabel>
         <RadioButtonLabel>
-          <input
+          <RadioButton
             id="species"
             name="species"
             type="radio"
@@ -102,7 +109,7 @@ const CharactersFilterForm: React.FC<Props> = ({ onFilterChange }) => {
           Animal
         </RadioButtonLabel>
         <RadioButtonLabel>
-          <input
+          <RadioButton
             defaultChecked
             id="species"
             name="species"
