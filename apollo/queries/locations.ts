@@ -14,9 +14,7 @@ export const FETCH_LOCATIONS = gql`
         type
         dimension
         residents {
-          id
           name
-          species
           image
         }
       }
@@ -32,7 +30,6 @@ export const FETCH_LOCATION_BY_ID = gql`
       type
       dimension
       residents {
-        id
         name
         image
       }

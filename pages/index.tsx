@@ -60,7 +60,9 @@ const Home = () => {
       </Head>
 
       <FavoritesContainer>
-        <Title fontSize="6rem">Home</Title>
+        <Title fontSize="5rem" paddingTop="6rem">
+          Home
+        </Title>
         {filteredFavorites.length && (
           <GridHome>
             {filteredFavorites.map((favorite: Character) => (

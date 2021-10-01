@@ -174,7 +174,6 @@ export const HStack = styled(Stack)`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 1rem 0;
   width: 100%;
 `;
 

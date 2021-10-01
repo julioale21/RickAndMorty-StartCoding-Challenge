@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "../../../styles/shared.styled";
 import SkeletonItem from "../SkeletonItem";
 
-const array = Array.from({ length: 10 }, (_, index) => index);
+const array = Array.from({ length: 20 }, (_, index) => index);
 
 const ListSkeleton: React.FC = () => {
   return (

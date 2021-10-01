@@ -70,11 +70,11 @@ const Locations: React.FC = () => {
             {locations.map((location: Location) => (
               <GridItem key={location.id}>
                 <LocationItem>
-                  <Text color={theme.primaryLight} fontWeight="bold">
+                  <Text color={theme.primaryLight} fontSize="1.5rem" fontWeight="bold">
                     {location.name}
                   </Text>
-                  <Text>{location.type}</Text>
-                  <Text>{location.dimension}</Text>
+                  <Text color="white">{location.type}</Text>
+                  <Text color="white">{location.dimension}</Text>
                   <BasicButton onClick={() => handleSelected(location)}>View</BasicButton>
                 </LocationItem>
               </GridItem>
