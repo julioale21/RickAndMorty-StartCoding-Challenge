@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { theme } from "../../theme";
+import { Text } from "../../styles/shared.styled";
 
 export const EpisodeCharacter = styled.div`
   flex-grow: 1;
@@ -12,7 +14,8 @@ export const EpisodeCharactersContainer = styled.div`
 `;
 
 export const EpisodeCharacterImage = styled.img`
-  max-width: 150px;
+  max-width: 100px;
+  border-radius: 50%;
 `;
 
 export const EpisodesContainer = styled.div`
@@ -53,9 +56,26 @@ export const Image = styled.img`
   margin: 0.1em;
 `;
 
+export const EpisodeName = styled(Text)`
+  font-size: 2rem;
+  @media screen and (min-width: 768px) {
+    font-size: 3rem;
+  }
+`;
+
 export const ImagesContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+`;
+
+export const VTitle = styled.h1`
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 1rem;
+  color: ${theme.secondaryDark};
+  @media screen and (min-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;

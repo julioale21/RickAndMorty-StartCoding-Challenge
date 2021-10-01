@@ -7,7 +7,11 @@ import {
   EpisodeCharacterImage,
   EpisodeCharactersContainer,
   EpisodeDetailContainer,
+  EpisodeName,
+  VTitle,
 } from "./Episode.styled";
+import { HStack } from "../../styles/shared.styled";
+import Loading from "../../components/Loading/Loading";
 
 const EpisodeDetail = () => {
   const router = useRouter();
@@ -22,12 +26,21 @@ const EpisodeDetail = () => {
     dispatch(fetchEpisodeById(id as string));
   }, [dispatch, id]);
 
-  if (isLoadingEpisodes) return "Loading...";
+  if (isLoadingEpisodes) return <Loading />;
   if (!episode) return <h1>No data</h1>;
 
   return (
     <EpisodeDetailContainer>
-      <h1>{episode.name}</h1>
+      <HStack margin="0 auto" marginBottom="2rem" maxWidth="50%">
+        <img alt="" src="/rickandmorty.png" width="100%" />
+      </HStack>
+      <HStack>
+        <VTitle>Episode</VTitle>
+        <EpisodeName fontWeight="bold" textShadow="1px 1px 5px white">
+          {episode.name}
+        </EpisodeName>
+      </HStack>
+
       <h3>{episode.air_date}</h3>
       <h3>{episode.episode}</h3>
       <h2>Episode Characters:</h2>

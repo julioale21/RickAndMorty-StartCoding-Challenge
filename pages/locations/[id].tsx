@@ -13,7 +13,6 @@ import { HStack, Text, VStack, GridItem } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import Character from "../../models/Character";
 import Loading from "../../components/Loading/Loading";
-import { NoResultsContainer } from "../Search.styled";
 
 const LocationDetail = () => {
   const router = useRouter();
