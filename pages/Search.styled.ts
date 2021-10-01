@@ -1,3 +1,4 @@
+import { theme } from "./../theme";
 import styled from "styled-components";
 
 export const NoResultsContainer = styled.div`
@@ -11,8 +12,15 @@ export const NoResultsContainer = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  padding: 0.5rem 1rem;
-  width: 300px;
+  padding: 0.7rem 1rem;
+  width: 250px;
+  color: gray;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 5px;
+  :focus {
+    outline: 2px solid ${theme.primaryLight};
+  }
 `;
 
 export const SearchInputContainer = styled.div`
