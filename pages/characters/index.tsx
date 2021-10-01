@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { CharacterContainer, Image, InfoContainer } from "./Characters.styled";
-import { NoResultsContainer, SearchInput, SearchInputContainer } from "../Search.styled";
+import {
+  NoResultsContainer,
+  RadioButtonContainer,
+  RadioButtonLabel,
+  SearchInput,
+  SearchInputContainer,
+} from "../Search.styled";
 import { BasicButton, Container, Grid, GridItem, Separator } from "../../styles/shared.styled";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacters } from "../../redux/actions/characterActions";
@@ -21,9 +27,10 @@ const Characters = () => {
   const { favorites } = useSelector((state: RootStateOrAny) => state.favoritesReducer);
   const [page, setPage] = useState(getPageNumber({ ...info }));
   const [inputValue, setInputValue] = useState("");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState({});
 
   useEffect(() => {
+    console.log(search);
     dispatch(fetchFavorites());
     dispatch(fetchCharacters(page, search));
   }, [dispatch, page, search]);
@@ -42,7 +49,7 @@ const Characters = () => {
 
   React.useMemo(() => {
     if (inputValue.length > 3 || inputValue.length === 0) {
-      setSearch(inputValue);
+      setSearch({ ...search, name: inputValue });
     }
   }, [inputValue]);
 
@@ -52,6 +59,10 @@ const Characters = () => {
 
   const isAlreadyInFavorites = (character: Character) => {
     return favorites.filter((item: Character) => item.id == character.id).length > 0;
+  };
+
+  const handleRadioChange = (e: any) => {
+    setSearch({ ...search, [e.target.name]: e.target.value });
   };
 
   return (
@@ -68,6 +79,82 @@ const Characters = () => {
             />
           </SearchInputContainer>
 
+          <RadioButtonContainer>
+            <RadioButtonLabel>
+              <input
+                id="status"
+                name="status"
+                type="radio"
+                value="Alive"
+                onChange={handleRadioChange}
+              />
+              Alive
+            </RadioButtonLabel>
+            <RadioButtonLabel>
+              <input
+                id="status"
+                name="status"
+                type="radio"
+                value="Dead"
+                onChange={handleRadioChange}
+              />
+              Dead
+            </RadioButtonLabel>
+            <RadioButtonLabel>
+              <input
+                defaultChecked
+                id="status"
+                name="status"
+                type="radio"
+                value=""
+                onChange={handleRadioChange}
+              />
+              All
+            </RadioButtonLabel>
+          </RadioButtonContainer>
+          <RadioButtonContainer>
+            <RadioButtonLabel>
+              <input
+                id="species"
+                name="species"
+                type="radio"
+                value="Human"
+                onChange={handleRadioChange}
+              />
+              Human
+            </RadioButtonLabel>
+            <RadioButtonLabel>
+              <input
+                id="species"
+                name="species"
+                type="radio"
+                value="Alien"
+                onChange={handleRadioChange}
+              />
+              Alien
+            </RadioButtonLabel>
+            <RadioButtonLabel>
+              <input
+                id="species"
+                name="species"
+                type="radio"
+                value="Animal"
+                onChange={handleRadioChange}
+              />
+              Animal
+            </RadioButtonLabel>
+            <RadioButtonLabel>
+              <input
+                defaultChecked
+                id="species"
+                name="species"
+                type="radio"
+                value=""
+                onChange={handleRadioChange}
+              />
+              All
+            </RadioButtonLabel>
+          </RadioButtonContainer>
           {isLoadingCharacters && <ListSkeleton />}
 
           {characters.length && !isLoadingCharacters ? (
@@ -86,15 +173,14 @@ const Characters = () => {
                         <Text color="white" margin="0" textShadow="1px 1px 1px">
                           {character.species}
                         </Text>
-                        {isAlreadyInFavorites(character) ? (
-                          <Text color="red" marginBottom="1.5rem" marginTop="1rem">
+                        {isAlreadyInFavorites(character) && (
+                          <Text color="red" fontSize="0.7rem">
                             Already in favorites
                           </Text>
-                        ) : (
-                          <BasicButton primary onClick={() => handleSelectedCharacter(character)}>
-                            View
-                          </BasicButton>
                         )}
+                        <BasicButton primary onClick={() => handleSelectedCharacter(character)}>
+                          View
+                        </BasicButton>
                       </InfoContainer>
                     </GridItem>
                   );

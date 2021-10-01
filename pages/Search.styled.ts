@@ -28,8 +28,19 @@ export const SearchInputContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
+`;
 
-  @media screen and (min-width: 768px) {
-    justify-content: flex-end;
-  }
+export const RadioButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const RadioButtonLabel = styled.label`
+  color: ${theme.secondaryLight};
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.5rem;
 `;

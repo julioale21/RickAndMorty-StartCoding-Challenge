@@ -12,9 +12,9 @@ export const setIsLoading = (isLoading: boolean, dispatch: Dispatch) => {
   });
 };
 
-export const fetchCharacters = (page?: number, name?: string) => async (dispatch: Dispatch) => {
+export const fetchCharacters = (page?: number, search?: object) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);
-  CharacterService.fetchCharacters(page, name)
+  CharacterService.fetchCharacters(page, search)
     .then((data) => {
       dispatch({
         type: FETCH_CHARACTERS,
