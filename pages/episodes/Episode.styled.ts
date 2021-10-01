@@ -41,7 +41,7 @@ export const EpisodeDetailContainer = styled.div`
 
 export const InfoContainer = styled.div`
   align-items: center;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
