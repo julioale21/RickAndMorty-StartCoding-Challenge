@@ -13,6 +13,7 @@ import { HStack, Text, VStack, GridItem } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import Character from "../../models/Character";
 import Loading from "../../components/Loading/Loading";
+import { NoResultsContainer } from "../Search.styled";
 
 const LocationDetail = () => {
   const router = useRouter();
@@ -66,16 +67,22 @@ const LocationDetail = () => {
         Residents
       </Text>
 
-      <LocationResidentsGrid>
-        {selectedLocation.residents.map((resident: Character) => (
-          <GridItem key={resident.id}>
-            <LocationResidentImage alt={resident.name} src={resident.image} width="50px" />
-            <Text color={theme.secondaryLight} fontSize="0.8rem">
-              {resident.name}
-            </Text>
-          </GridItem>
-        ))}
-      </LocationResidentsGrid>
+      {selectedLocation.residents.length ? (
+        <LocationResidentsGrid>
+          {selectedLocation.residents.map((resident: Character) => (
+            <GridItem key={resident.id}>
+              <LocationResidentImage alt={resident.name} src={resident.image} width="50px" />
+              <Text color={theme.secondaryLight} fontSize="0.8rem">
+                {resident.name}
+              </Text>
+            </GridItem>
+          ))}
+        </LocationResidentsGrid>
+      ) : (
+        <div>
+          <Text>There are not residents</Text>
+        </div>
+      )}
     </LocationDetailContainer>
   );
 };
