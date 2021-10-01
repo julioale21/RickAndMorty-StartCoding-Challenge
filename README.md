@@ -1,34 +1,129 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<br/><br/>
+<br/><br/>
 
-## Getting Started
+<p align="center">
+    <img height="100" src="https://www.alkemy.org/assets/images/logo-header.png">
+   </p>
+   
+   
+   <br/><br/>
+    
+ 
+   
+   <br/><br/>
+   
 
-First, run the development server:
+   <h1 align="center">Rick and Morty - Start Coding Frontend Challenge</h1>
+   
+   
+### [📖 Go to CHANGELOG.md to see the changelog](CHANGELOG.md)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+  
+## El Challenge
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+El siguiente challenge requiere que pongas en práctica los conocimientos y habilidades adquiridas a lo largo del curso de Reactbásico y avanzado.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Descripción del proyecto.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+El proyecto consiste en una aplicación web que funcionará como una wiki de la serieRick & Morty.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+El objetivo de la aplicación es ofrecer a las personas usuarias un lugar en donde obtener información sobre los personajes, lugaresy episodios de dicha serie.
 
-## Learn More
+En la pantalla principal la persona accede a un dashboard web que le mostrará los primeros 10 personajes que hayan sido marcados como favoritos por el usuario. 
 
-To learn more about Next.js, take a look at the following resources:
+Deberá implementar paginación para el caso de que existan más de 10 personajes favoritos. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El usuario tendrá la posibilidad de remover cualquiera de dichos personajes para eliminarnos de la lista. 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+La acción del usuario deberá persistir aun en el caso de que el mismo cierre la aplicación y vuelva a abrirla. 
 
-## Deploy on Vercel
+Además se mostrará un sidebar mediante el cual podrá acceder a las diferentes secciones de la aplicación:-Dashboard-Personajes-Episodios Lugares 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Al acceder a las secciones Personajes, Episodioso, Lugares, la persona verá un listado de los primeros 20 resultados obtenidos. 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Se deberá implementar paginación de modo tal que la persona pueda obtener más resultados avanzando y retrocediendo entre las distintas páginas. 
+
+Cada resultado estará representado por una tarjeta que contendrá información mínima del personaje, lugar o episodio(segúnelcaso): Nombre e imagen(encasodequeseencuentredisponible). 
+
+A su vez, cada card contendrá un botón “Verdetalle”, el cual deberá redirigir a una página que contendrá información detallada sobre el personaje, episodio o lugar seleccionado(paraesto,sedeberánconsumirla información de cada tipo que se encuentra disponibleen la API).
+
+Por otro lado, en todas las secciones deberá implementarse un filtro de búsqueda que permita al usuario ingresar un criterio para filtrar/buscar Personajes, episodiosolugares, según sea el caso. 
+
+Los criterios de búsqueda variarán dependiendo del tipo de recurso, conforme las opciones que ofrece la API para cada caso. 
+
+Sin perjuicio de ello, en todos los casos la búsqueda se realizará a partir de que el usuario tipee el 3 carácter dentro del input correspondiente. 
+
+Tanto dentro de la sección de resultados como así también dentro de la página con el detalle de cada personaje, la persona deberá visualizar si el personaje ha sido previamente marcado como favorito y, además, podrá marcar/desmarcar el mismo para modificar tal condición. 
+
+Los cambios del usuario deberán persistir, no sólo mientras el mismo se encuentre navegando(esdecir, si navega al dashboard luego de agregar/quitar un personaje de favoritos), sino también en caso de que cierre la aplicación y vuelva a abrirla.
+
+### Requerimientos Técnicos.
+
+    - Utilizar NextJs con Typescript (preferentemente laúltima versión estable).
+    - La información necesaria para completar el challengeprovendrá deesta API.
+    - Tener en cuenta que la API se encuentra paginada, por lo que deberá implementarse la lógica correspondiente para obtener el resultado descrito anteriormente.
+    - Utilizar Functional components y hooks.
+    - Utilizar styled components para estilar los componentes.
+    - Se deberá emplear algún patrón de manejo de estado global(Redux,Context) a elección.
+    - En caso de que el usuario ingrese una url no válida, se deberá mostrar una página 404 con un botón que redirige a la Home.
+    - Se valorará el uso de las distintas técnicas de manejode errores.
+    - Se valorará la experiencia del usuario durante el proceso de carga de información (loading).
+    - El diseño es de elección libre, sin perjuicio de lo cual se deja el siguiente layout a modo de referencia.
+
+## Demo
+[https://alkemy-superheroes-challenge-5os7z4jsx-julioale21.vercel.app/home](https://alkemy-superheroes-challenge-5os7z4jsx-julioale21.vercel.app/home).
+
+To be able to do login on demo you must allow cors in your browser and configure the site as secure.
+
+Go padlock in url box
+
+Go to site configuration.
+
+Go to unsafe content
+
+Check allow option.
+
+## Project
+
+### Tools
+
+- React.js
+- Vite.js
+- Bootstrap
+- Formik
+- Yup
+- AOS animation
+- React-toats-notification
+- React-countup
+- Axios
+- Release-it
+
+### Project Structure
+The files are structured as follow:
+
+    .
+    ├── public              # Static Files
+    ├── src
+        ├── assets          # App resources like images
+        ├── components      # Stateless components
+        ├── Context         # Global state  
+        ├── models          # Entities
+        ├── screens         # Pages that make up the app 
+        ├── services        # Set of software functionalities that different clients can reuse for different purposes
+        ├── types           # custom types
+        App.css
+        App.tsx
+        main.tsx
+    ├── CONTRIBUTING.md      # Document the conventions used in this project.
+    └── README.md            # The first page that the user will view when will visit the repository.
+
+## Requirements
+* npm or yarn
+* Git
+
+## Local deployment
+
+* Clone repository.
+* Execute the command `npm install`
+* add .env file and the current variable VITE_SEARCH_URL=https://superheroapi.com/api/10222145357517937/search/
+* Execute the command `npm run dev`
