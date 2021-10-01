@@ -6,7 +6,7 @@ import { BasicButton, Container, Grid, GridItem, Separator } from "../../styles/
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacters } from "../../redux/actions/characterActions";
 import { getPageNumber } from "../../utils";
-import { Paginator } from "../../components";
+import { Layout, Paginator } from "../../components";
 import { Text, Title } from "../../styles/shared.styled";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Character from "../../models/Character";
@@ -55,65 +55,67 @@ const Characters = () => {
   };
 
   return (
-    <CharacterContainer>
-      <Container paddingTop="5em">
-        <Title marginBottom="2rem">Characters</Title>
-        <SearchInputContainer>
-          <SearchInput
-            placeholder="Search name"
-            type="text"
-            value={inputValue}
-            onChange={handleSearchChange}
-          />
-        </SearchInputContainer>
-
-        {isLoadingCharacters && <ListSkeleton />}
-
-        {characters.length && !isLoadingCharacters ? (
-          <>
-            <Grid>
-              {characters.map((character: Character) => {
-                return (
-                  <GridItem key={character.id}>
-                    <InfoContainer>
-                      <Image alt="image" src={character.image} />
-                      <Separator size="15px" />
-                      <Text fontSize="1.2rem" fontWeight="bold" textShadow="1px 1px 1px white">
-                        {character.name}
-                      </Text>
-
-                      <Text color="white" margin="0" textShadow="1px 1px 1px">
-                        {character.species}
-                      </Text>
-                      {isAlreadyInFavorites(character) ? (
-                        <Text color="red" marginBottom="1.5rem" marginTop="1rem">
-                          Already in favorites
-                        </Text>
-                      ) : (
-                        <BasicButton primary onClick={() => handleSelectedCharacter(character)}>
-                          View
-                        </BasicButton>
-                      )}
-                    </InfoContainer>
-                  </GridItem>
-                );
-              })}
-            </Grid>
-            <Paginator
-              handleNext={handleNextPage}
-              handlePrev={handlePrevPage}
-              next={info.next}
-              page={page}
-              prev={info.prev}
+    <Layout>
+      <CharacterContainer>
+        <Container paddingTop="5em">
+          <Title marginBottom="2rem">Characters</Title>
+          <SearchInputContainer>
+            <SearchInput
+              placeholder="Search name"
+              type="text"
+              value={inputValue}
+              onChange={handleSearchChange}
             />
-          </>
-        ) : (
-          <NoResultsContainer>
-            <Text color="white">No results found</Text>
-          </NoResultsContainer>
-        )}
-      </Container>
-    </CharacterContainer>
+          </SearchInputContainer>
+
+          {isLoadingCharacters && <ListSkeleton />}
+
+          {characters.length && !isLoadingCharacters ? (
+            <>
+              <Grid>
+                {characters.map((character: Character) => {
+                  return (
+                    <GridItem key={character.id}>
+                      <InfoContainer>
+                        <Image alt="image" src={character.image} />
+                        <Separator size="15px" />
+                        <Text fontSize="1.2rem" fontWeight="bold" textShadow="1px 1px 1px white">
+                          {character.name}
+                        </Text>
+
+                        <Text color="white" margin="0" textShadow="1px 1px 1px">
+                          {character.species}
+                        </Text>
+                        {isAlreadyInFavorites(character) ? (
+                          <Text color="red" marginBottom="1.5rem" marginTop="1rem">
+                            Already in favorites
+                          </Text>
+                        ) : (
+                          <BasicButton primary onClick={() => handleSelectedCharacter(character)}>
+                            View
+                          </BasicButton>
+                        )}
+                      </InfoContainer>
+                    </GridItem>
+                  );
+                })}
+              </Grid>
+              <Paginator
+                handleNext={handleNextPage}
+                handlePrev={handlePrevPage}
+                next={info.next}
+                page={page}
+                prev={info.prev}
+              />
+            </>
+          ) : (
+            <NoResultsContainer>
+              <Text color="white">No results found</Text>
+            </NoResultsContainer>
+          )}
+        </Container>
+      </CharacterContainer>
+    </Layout>
   );
 };
 

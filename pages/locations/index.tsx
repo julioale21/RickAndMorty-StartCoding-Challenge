@@ -4,7 +4,7 @@ import { LocationsContainer, LocationItem } from "./Locations.styled";
 import { BasicButton, Grid, GridItem, Text, Title } from "../../styles/shared.styled";
 import { fetchLocations } from "../../redux/actions/locationActions";
 import { getPageNumber } from "../../utils";
-import { Paginator } from "../../components";
+import { Layout, Paginator } from "../../components";
 import { theme } from "../../theme";
 import { useRouter } from "next/router";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
@@ -48,53 +48,55 @@ const Locations: React.FC = () => {
   };
 
   return (
-    <LocationsContainer>
-      <Title marginBottom="2rem" paddingTop="5rem">
-        Locations
-      </Title>
+    <Layout>
+      <LocationsContainer>
+        <Title marginBottom="2rem" paddingTop="5rem">
+          Locations
+        </Title>
 
-      <SearchInputContainer>
-        <SearchInput
-          placeholder="Search name"
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-      </SearchInputContainer>
-
-      {isLoadingLocations && <ListSkeleton />}
-
-      {locations.length && !isLoadingLocations ? (
-        <>
-          <Grid>
-            {locations.map((location: Location) => (
-              <GridItem key={location.id}>
-                <LocationItem>
-                  <Text color={theme.primaryLight} fontSize="1.5rem" fontWeight="bold">
-                    {location.name}
-                  </Text>
-                  <Text color="white">{location.type}</Text>
-                  <Text color="white">{location.dimension}</Text>
-                  <BasicButton onClick={() => handleSelected(location)}>View</BasicButton>
-                </LocationItem>
-              </GridItem>
-            ))}
-          </Grid>
-
-          <Paginator
-            handleNext={handleNextPage}
-            handlePrev={handlePrevPage}
-            next={info.next}
-            page={page}
-            prev={info.prev}
+        <SearchInputContainer>
+          <SearchInput
+            placeholder="Search name"
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
           />
-        </>
-      ) : (
-        <NoResultsContainer>
-          <Text color="white">No results found</Text>
-        </NoResultsContainer>
-      )}
-    </LocationsContainer>
+        </SearchInputContainer>
+
+        {isLoadingLocations && <ListSkeleton />}
+
+        {locations.length && !isLoadingLocations ? (
+          <>
+            <Grid>
+              {locations.map((location: Location) => (
+                <GridItem key={location.id}>
+                  <LocationItem>
+                    <Text color={theme.primaryLight} fontSize="1.5rem" fontWeight="bold">
+                      {location.name}
+                    </Text>
+                    <Text color="white">{location.type}</Text>
+                    <Text color="white">{location.dimension}</Text>
+                    <BasicButton onClick={() => handleSelected(location)}>View</BasicButton>
+                  </LocationItem>
+                </GridItem>
+              ))}
+            </Grid>
+
+            <Paginator
+              handleNext={handleNextPage}
+              handlePrev={handlePrevPage}
+              next={info.next}
+              page={page}
+              prev={info.prev}
+            />
+          </>
+        ) : (
+          <NoResultsContainer>
+            <Text color="white">No results found</Text>
+          </NoResultsContainer>
+        )}
+      </LocationsContainer>
+    </Layout>
   );
 };
 
