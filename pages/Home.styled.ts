@@ -54,3 +54,21 @@ export const HomeContainer = styled.div`
     padding: 0 4rem;
   }
 `;
+
+export const NoResultsContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ButtonCharacters = styled.button`
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  color: ${theme.secondaryLight};
+  background-color: ${theme.primaryDark};
+  &:hover {
+    background-color: ${theme.primaryLight};
+  }
+`;

@@ -6,13 +6,16 @@ import { fetchFavorites, removeFromFavorites } from "../redux/actions/favoritesA
 import {
   ActionsContainer,
   CharacterImage,
+  ButtonCharacters,
   FavoritesContainer,
   GridHome,
   HomeContainer,
+  NoResultsContent,
 } from "./Home.styled";
 import Character from "../models/Character";
 import Paginator from "../components/Paginator";
 import { Layout } from "../components";
+import { NoResultsContainer } from "./Search.styled";
 
 const Home = () => {
   const router = useRouter();
@@ -51,14 +54,18 @@ const Home = () => {
     setPage(page - 1);
   };
 
+  const goToCharacters = () => {
+    router.push("/characters");
+  };
+
   return (
     <Layout>
       <HomeContainer>
         <FavoritesContainer>
           <Title fontSize="5rem" paddingTop="6rem">
-            Home
+            Favorites Characters
           </Title>
-          {filteredFavorites.length && (
+          {filteredFavorites.length ? (
             <GridHome>
               {filteredFavorites.map((favorite: Character) => (
                 <GridItem key={favorite.id}>
@@ -75,15 +82,22 @@ const Home = () => {
                   </ActionsContainer>
                 </GridItem>
               ))}
+              <Paginator
+                handleNext={handleNextPage}
+                handlePrev={handlePrevPage}
+                next={page + 1 <= totalPages ? page + 1 : null}
+                page={page}
+                prev={page - 1}
+              />
             </GridHome>
+          ) : (
+            <NoResultsContainer>
+              <NoResultsContent>
+                <Text color="white">There are not favorites added.</Text>
+                <ButtonCharacters onClick={goToCharacters}>Go to characters</ButtonCharacters>
+              </NoResultsContent>
+            </NoResultsContainer>
           )}
-          <Paginator
-            handleNext={handleNextPage}
-            handlePrev={handlePrevPage}
-            next={page + 1 <= totalPages ? page + 1 : null}
-            page={page}
-            prev={page - 1}
-          />
         </FavoritesContainer>
       </HomeContainer>
     </Layout>
