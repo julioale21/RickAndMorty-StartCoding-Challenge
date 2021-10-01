@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { BasicButton, DeleteButton, Grid, GridItem, Text, Title } from "../styles/shared.styled";
+import { BasicButton, DeleteButton, GridItem, Text, Title } from "../styles/shared.styled";
 import { fetchFavorites, removeFromFavorites } from "../redux/actions/favoritesActions";
-import { ActionsContainer, CharacterImage, FavoritesContainer, GridHome, HomeContainer } from "./Home.styled";
+import {
+  ActionsContainer,
+  CharacterImage,
+  FavoritesContainer,
+  GridHome,
+  HomeContainer,
+} from "./Home.styled";
 import Character from "../models/Character";
 import Paginator from "../components/Paginator";
 
