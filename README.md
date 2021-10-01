@@ -59,16 +59,25 @@ Los cambios del usuario deberán persistir, no sólo mientras el mismo se encuen
 
 ### Requerimientos Técnicos.
 
-    - Utilizar NextJs con Typescript (preferentemente laúltima versión estable).
-    - La información necesaria para completar el challengeprovendrá deesta API.
-    - Tener en cuenta que la API se encuentra paginada, por lo que deberá implementarse la lógica correspondiente para obtener el resultado descrito anteriormente.
-    - Utilizar Functional components y hooks.
-    - Utilizar styled components para estilar los componentes.
-    - Se deberá emplear algún patrón de manejo de estado global(Redux,Context) a elección.
-    - En caso de que el usuario ingrese una url no válida, se deberá mostrar una página 404 con un botón que redirige a la Home.
-    - Se valorará el uso de las distintas técnicas de manejode errores.
-    - Se valorará la experiencia del usuario durante el proceso de carga de información (loading).
-    - El diseño es de elección libre, sin perjuicio de lo cual se deja el siguiente layout a modo de referencia.
+- Utilizar NextJs con Typescript (preferentemente laúltima versión estable).
+
+- La información necesaria para completar el challengeprovendrá deesta API.
+    
+- Tener en cuenta que la API se encuentra paginada, por lo que deberá implementarse la lógica correspondiente para obtener el resultado descrito anteriormente.
+    
+- Utilizar Functional components y hooks.
+    
+- Utilizar styled components para estilar los componentes.
+    
+- Se deberá emplear algún patrón de manejo de estado global(Redux,Context) a elección.
+    
+- En caso de que el usuario ingrese una url no válida, se deberá mostrar una página 404 con un botón que redirige a la Home.
+    
+- Se valorará el uso de las distintas técnicas de manejode errores.
+    
+- Se valorará la experiencia del usuario durante el proceso de carga de información (loading).
+    
+- El diseño es de elección libre, sin perjuicio de lo cual se deja el siguiente layout a modo de referencia.
 
 
 
