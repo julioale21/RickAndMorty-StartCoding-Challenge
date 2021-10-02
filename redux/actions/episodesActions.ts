@@ -12,9 +12,9 @@ export const setIsLoading = (isLoading: boolean, dispatch: Dispatch) => {
   });
 };
 
-export const fetchEpisodes = (page?: number, name?: string) => async (dispatch: Dispatch) => {
+export const fetchEpisodes = (page?: number, filter?: object) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);
-  EpisodesService.fetchEpisodes(page, name)
+  EpisodesService.fetchEpisodes(page, filter)
     .then((data) => {
       dispatch({
         type: FETCH_EPISODES,

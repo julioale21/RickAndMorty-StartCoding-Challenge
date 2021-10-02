@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { LocationsContainer, LocationItem } from "./Locations.styled";
 import { BasicButton, Grid, GridItem, Text, Title } from "../../styles/shared.styled";
@@ -9,7 +9,8 @@ import { theme } from "../../theme";
 import { useRouter } from "next/router";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Location from "../../models/Location";
-import { NoResultsContainer, SearchInput, SearchInputContainer } from "../Search.styled";
+import { NoResultsContainer } from "../Search.styled";
+import LocationsFilterForm from "../../components/LocationsFilterForm";
 
 const Locations: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,14 +19,7 @@ const Locations: React.FC = () => {
     (state: RootStateOrAny) => state.locationsReducer,
   );
   const [page, setPage] = useState<number>(getPageNumber({ next: info.next, prev: info.prev }));
-  const [inputValue, setInputValue] = useState("");
-  const [search, setSearch] = useState("");
-
-  useMemo(() => {
-    if (inputValue.length > 3 || inputValue.length === 0) {
-      setSearch(inputValue);
-    }
-  }, [inputValue]);
+  const [search, setSearch] = useState({});
 
   useEffect(() => {
     dispatch(fetchLocations(page, search));
@@ -43,10 +37,6 @@ const Locations: React.FC = () => {
     router.push("/locations/" + location.id);
   };
 
-  const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setInputValue(e.currentTarget.value);
-  };
-
   return (
     <Layout>
       <LocationsContainer>
@@ -54,14 +44,7 @@ const Locations: React.FC = () => {
           Locations
         </Title>
 
-        <SearchInputContainer>
-          <SearchInput
-            placeholder="Search name"
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-          />
-        </SearchInputContainer>
+        <LocationsFilterForm onFilterChange={(filter) => setSearch(filter)} />
 
         {isLoadingLocations && <ListSkeleton />}
 

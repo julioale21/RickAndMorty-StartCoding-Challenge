@@ -13,13 +13,19 @@ export const CharacterImage = styled.img`
 
 export const FavoritesContainer = styled.div`
   padding-top: 4rem;
-  display: flex:
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   @media screen and (min-width: 768px) {
     padding: 0 4rem;
   }
+`;
+
+export const FavoritesGridContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const GridHome = styled.div<{ theme: ITheme }>`

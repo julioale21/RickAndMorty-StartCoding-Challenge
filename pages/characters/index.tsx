@@ -50,7 +50,7 @@ const Characters = () => {
         <Container paddingTop="5em">
           <Title marginBottom="2rem">Characters</Title>
           <CharactersFilterForm onFilterChange={(filter) => setSearch(filter)} />
-
+          <Separator size="2rem" />
           {isLoadingCharacters && <ListSkeleton />}
 
           {characters.length && !isLoadingCharacters ? (

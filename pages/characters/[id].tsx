@@ -8,11 +8,15 @@ import {
   MainContainer,
   VTitle,
 } from "./Character.styled";
-import { BasicButton, HStack, Text, VStack } from "../../styles/shared.styled";
+import { BasicButton, DeleteButton, HStack, Text, VStack } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { fetchCharacterById } from "../../redux/actions/characterActions";
-import { addToFavorites, fetchFavorites } from "../../redux/actions/favoritesActions";
+import {
+  addToFavorites,
+  fetchFavorites,
+  removeFromFavorites,
+} from "../../redux/actions/favoritesActions";
 import Character from "../../models/Character";
 import Loading from "../../components/Loading/Loading";
 import { NoResultsContainer } from "../Search.styled";
@@ -48,6 +52,10 @@ const CharacterDetail = () => {
     dispatch(fetchFavorites());
     dispatch(addToFavorites(character));
     router.push("/characters");
+  };
+
+  const removeFavorite = () => {
+    dispatch(removeFromFavorites(character));
   };
 
   if (isLoadingCharacters) return <Loading />;
@@ -103,9 +111,12 @@ const CharacterDetail = () => {
               {!exists ? (
                 <BasicButton onClick={handleSelected}>Add</BasicButton>
               ) : (
-                <Text color="red" marginTop="1rem">
-                  Already in favorites
-                </Text>
+                <>
+                  <Text color="red" marginTop="1rem">
+                    Already in favorites
+                  </Text>
+                  <DeleteButton onClick={removeFavorite}>Remove</DeleteButton>
+                </>
               )}
             </VStack>
             <HStack>

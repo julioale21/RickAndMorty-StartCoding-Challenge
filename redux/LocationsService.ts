@@ -9,14 +9,12 @@ interface PaginatedLocation {
 }
 
 class LocationsService {
-  static async fetchLocations(page?: number, name?: string): Promise<PaginatedLocation> {
+  static async fetchLocations(page?: number, filter?: object): Promise<PaginatedLocation> {
     const { data } = await client.query({
       query: FETCH_LOCATIONS,
       variables: {
         page,
-        filter: {
-          name,
-        },
+        filter,
       },
     });
 
