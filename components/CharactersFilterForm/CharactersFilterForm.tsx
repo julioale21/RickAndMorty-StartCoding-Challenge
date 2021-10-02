@@ -11,6 +11,7 @@ import {
 interface Props {
   onFilterChange: (filter: object) => void;
 }
+
 const CharactersFilterForm: React.FC<Props> = ({ onFilterChange }) => {
   const [inputValue, setInputValue] = useState("");
   const [search, setSearch] = useState({});

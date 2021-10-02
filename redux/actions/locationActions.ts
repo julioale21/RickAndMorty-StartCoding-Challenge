@@ -12,9 +12,9 @@ export const setIsLoading = (isLoading: boolean, dispatch: Dispatch) => {
   });
 };
 
-export const fetchLocations = (page?: number, name?: string) => async (dispatch: Dispatch) => {
+export const fetchLocations = (page?: number, filter?: object) => async (dispatch: Dispatch) => {
   setIsLoading(true, dispatch);
-  LocationsService.fetchLocations(page, name)
+  LocationsService.fetchLocations(page, filter)
     .then((data) => {
       dispatch({
         type: FETCH_LOCATIONS,
