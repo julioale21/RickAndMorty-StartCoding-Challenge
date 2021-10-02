@@ -8,6 +8,7 @@ import {
   CharacterImage,
   ButtonCharacters,
   FavoritesContainer,
+  FavoritesGridContainer,
   GridHome,
   HomeContainer,
   NoResultsContent,
@@ -66,22 +67,24 @@ const Home = () => {
             Favorites Characters
           </Title>
           {filteredFavorites.length ? (
-            <GridHome>
-              {filteredFavorites.map((favorite: Character) => (
-                <GridItem key={favorite.id}>
-                  <CharacterImage alt={favorite.name} src={favorite.image} />
-                  <Text fontSize="2rem" fontWeight="bold" marginTop="2rem">
-                    {favorite.name}
-                  </Text>
-                  <Text color="white">{favorite.species}</Text>
-                  <ActionsContainer>
-                    <BasicButton onClick={() => handleViewSelected(favorite)}>View</BasicButton>
-                    <DeleteButton onClick={() => handleDeleteFavorite(favorite)}>
-                      Delete
-                    </DeleteButton>
-                  </ActionsContainer>
-                </GridItem>
-              ))}
+            <FavoritesGridContainer>
+              <GridHome>
+                {filteredFavorites.map((favorite: Character) => (
+                  <GridItem key={favorite.id}>
+                    <CharacterImage alt={favorite.name} src={favorite.image} />
+                    <Text fontSize="2rem" fontWeight="bold" marginTop="2rem">
+                      {favorite.name}
+                    </Text>
+                    <Text color="white">{favorite.species}</Text>
+                    <ActionsContainer>
+                      <BasicButton onClick={() => handleViewSelected(favorite)}>View</BasicButton>
+                      <DeleteButton onClick={() => handleDeleteFavorite(favorite)}>
+                        Delete
+                      </DeleteButton>
+                    </ActionsContainer>
+                  </GridItem>
+                ))}
+              </GridHome>
               <Paginator
                 handleNext={handleNextPage}
                 handlePrev={handlePrevPage}
@@ -89,7 +92,7 @@ const Home = () => {
                 page={page}
                 prev={page - 1}
               />
-            </GridHome>
+            </FavoritesGridContainer>
           ) : (
             <NoResultsContainer>
               <NoResultsContent>
