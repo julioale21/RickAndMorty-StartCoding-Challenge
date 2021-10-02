@@ -1,9 +1,4 @@
-import {
-  FETCH_FAVORITES,
-  ADD_TO_FAVORITES,
-  REMOVE_TO_FAVORITES,
-  SET_ISLOADING,
-} from "../../actions/types";
+import { FETCH_FAVORITES, ADD_TO_FAVORITES, REMOVE_TO_FAVORITES } from "../../actions/types";
 import { INITIAL_STATE } from "./InitialState";
 import IAction from "./IAction";
 import IState from "./IState";
@@ -33,12 +28,6 @@ const favoritesCharactersReducer = (state = INITIAL_STATE, action: IAction): ISt
       return {
         ...state,
         favorites: state.favorites.filter((item) => item.id !== action.payload.favorite.id),
-      };
-
-    case SET_ISLOADING:
-      return {
-        ...state,
-        isLoading: action.payload.isLoading,
       };
 
     default:
