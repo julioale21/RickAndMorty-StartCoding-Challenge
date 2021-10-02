@@ -21,7 +21,7 @@ const GoBackButton = styled.button`
   border: none;
   border-radius: 5px;
   &:hover {
-    background-color: #4A9B86;
+    background-color: #4a9b86;
     color: white;
   }
 `;
