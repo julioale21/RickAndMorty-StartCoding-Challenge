@@ -9,7 +9,7 @@ import {
   EpisodeDetailContainer,
   EpisodeName,
   VTitle,
-} from "./Episode.styled";
+} from "../../styles/Episode.styled";
 import { HStack } from "../../styles/shared.styled";
 import Loading from "../../components/Loading/Loading";
 import { Layout } from "../../components";

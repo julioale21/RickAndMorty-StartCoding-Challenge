@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import styled from "styled-components";
-import { SearchInput } from "../../pages/Search.styled";
+import { SearchInput } from "../../styles/Search.styled";
 import { Separator } from "../../styles/shared.styled";
 
 const Form = styled.div`

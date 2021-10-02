@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
-import { EpisodesContainer, InfoContainer, Image, ImagesContainer } from "./Episode.styled";
+import {
+  EpisodesContainer,
+  InfoContainer,
+  Image,
+  ImagesContainer,
+} from "../../styles/Episode.styled";
 import { BasicButton, Grid, GridItem, Text, Title } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import { Layout, Paginator } from "../../components";
@@ -9,7 +14,7 @@ import { fetchEpisodes } from "../../redux/actions/episodesActions";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Episode from "../../models/Episode";
 import { useRouter } from "next/router";
-import { NoResultsContainer } from "../Search.styled";
+import { NoResultsContainer } from "../../styles/Search.styled";
 import EpisodesFilterForm from "../../components/EpisodesFilterForm";
 
 const Episodes: React.FC = () => {

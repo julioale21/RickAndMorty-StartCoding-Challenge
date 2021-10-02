@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
-import { LocationsContainer, LocationItem } from "./Locations.styled";
+import { LocationsContainer, LocationItem } from "../../styles/Locations.styled";
 import { BasicButton, Grid, GridItem, Text, Title } from "../../styles/shared.styled";
 import { fetchLocations } from "../../redux/actions/locationActions";
 import { getPageNumber } from "../../utils";
@@ -9,7 +9,7 @@ import { theme } from "../../theme";
 import { useRouter } from "next/router";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import Location from "../../models/Location";
-import { NoResultsContainer } from "../Search.styled";
+import { NoResultsContainer } from "../../styles/Search.styled";
 import LocationsFilterForm from "../../components/LocationsFilterForm";
 
 const Locations: React.FC = () => {

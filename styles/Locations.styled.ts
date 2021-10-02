@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ITheme, theme } from "../../theme";
-import { Text } from "../../styles/shared.styled";
+import { ITheme, theme } from "../theme";
+import { Text } from "./shared.styled";
 
 export const LocationsContainer = styled.div`
   background-image: url("/rick-and-morty-07.jpg");

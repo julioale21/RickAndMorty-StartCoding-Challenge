@@ -8,7 +8,7 @@ import {
   LocationName,
   VTitle,
   LocationResidentImage,
-} from "./Locations.styled";
+} from "../../styles/Locations.styled";
 import { HStack, Text, VStack, GridItem } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import Character from "../../models/Character";

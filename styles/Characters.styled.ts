@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "../theme";
 
 export const CharacterContainer = styled.div`
   background-image: url("/rick_and_morty-2.jpg");

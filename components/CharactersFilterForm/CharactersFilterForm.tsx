@@ -6,7 +6,7 @@ import {
   RadioButtonLabel,
   SearchInput,
   SearchInputContainer,
-} from "../../pages/Search.styled";
+} from "../../styles/Search.styled";
 
 interface Props {
   onFilterChange: (filter: object) => void;

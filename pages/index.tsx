@@ -12,11 +12,11 @@ import {
   GridHome,
   HomeContainer,
   NoResultsContent,
-} from "./Home.styled";
+} from "../styles/Home.styled";
 import Character from "../models/Character";
 import Paginator from "../components/Paginator";
 import { Layout } from "../components";
-import { NoResultsContainer } from "./Search.styled";
+import { NoResultsContainer } from "../styles/Search.styled";
 
 const Home = () => {
   const router = useRouter();

@@ -7,7 +7,7 @@ import {
   Line,
   MainContainer,
   VTitle,
-} from "./Character.styled";
+} from "../../styles/Character.styled";
 import { BasicButton, DeleteButton, HStack, Text, VStack } from "../../styles/shared.styled";
 import { theme } from "../../theme";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
@@ -19,7 +19,7 @@ import {
 } from "../../redux/actions/favoritesActions";
 import Character from "../../models/Character";
 import Loading from "../../components/Loading/Loading";
-import { NoResultsContainer } from "../Search.styled";
+import { NoResultsContainer } from "../../styles/Search.styled";
 import { Layout } from "../../components";
 
 const CharacterDetail = () => {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { theme } from "../../theme";
-import { Text } from "../../styles/shared.styled";
+import { theme } from "../theme";
+import { Text } from "./shared.styled";
 
 export const EpisodeCharacter = styled.div`
   flex-grow: 1;
